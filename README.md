@@ -1,2 +1,2 @@
 # ideal-pancake
-Projet Outils formels avancés
+Projet Outils Formels Avancés
