@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Champs pour rentrer des micro-commentaires</h1>
+
+<form action="/adding">
+	NickName:<br>
+	<input type="text" name="nickname" value="">
+	<br>
+	Micro-commentaire:<br>
+	<input type="text" name="text" value="">
+	<br><br>
+	<input type="submit" value="Submit">
+</form>
+{% endblock %}
