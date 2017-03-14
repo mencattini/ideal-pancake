@@ -1,10 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>Hi!</h1>
+{% if posts|length != 0 %}
 {%for post in posts %}
 <div>
 <p>Post(<b>{{ post.id }})</b> from: <b>{{ post.nickname }}</b><br>
 {{ post.text }}<hr></p>
 </div>
 {% endfor %}
+{% else %}
+<div><p><b>Aucun micro-commentaires. Vous pouvez en ajouter <a href="/add">Ici</a></b></p></div>
+{% endif %}
 {% endblock %}
