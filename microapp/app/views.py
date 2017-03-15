@@ -21,31 +21,13 @@ def adding():
     text = request.args.get('text')[0:140]
     if text != "" and nickname != "":
         post = models.Post(nickname=nickname, text=text)
-
-        # we create the asyncio loop
-        loop = asyncio.new_event_loop()
-
-        # Blocking call which returns when the display_date() coroutine is done
-        loop.run_until_complete(persist(post))
-        loop.close()
+        db.session.add(post)
+        db.session.commit()
     return redirect(url_for('index'))
 
 
 @app.route('/clean')
 def clean():
-    posts = models.Post.query.all()
-    loop = asyncio.new_event_loop()
-    for post in posts:
-        loop.run_until_complete(delete(post))
-    loop.close()
+    db.session.query(models.Post).delete()
+    db.session.commit()
     return redirect(url_for('index'))
-
-
-async def delete(post):
-    db.session.delete(post)
-    db.session.commit()
-
-
-async def persist(post):
-    db.session.add(post)
-    db.session.commit()
