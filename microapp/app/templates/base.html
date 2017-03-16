@@ -1,6 +1,7 @@
 <html>
 	<head>
 	<link rel="icon" href="static/flask.ico" type="image/x-icon">
+	<link rel="stylesheet" href="base.css">
 	{% if title %}
 		<title>{{ title }} - microblog</title>
 	{% else %}
@@ -8,9 +9,9 @@
 	{% endif %}
 	</head>
 	<body>
-		<div>Microblog: <a href="/index">Home</a></div>
-		<div>Ajout: <a href="add">Add</a></div>
-		<div>Clean: <a href="clean">Clean</a></div>
+		<div>
+		<pre id="t1">Microblog: <a href="index">Home</a> 	Ajout: <a href="add">Add</a> 	Clean: <a href="clean">Clean</a></pre>
+		</div>
 		<hr>
 		{% block content %}{% endblock %}
 	</body>

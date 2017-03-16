@@ -1,0 +1,9 @@
+#t1 {
+    -moz-tab-size: 16; /* Code for Firefox */
+    -o-tab-size: 16; /* Code for Opera 10.6-12.1 */
+    tab-size: 16;
+}
+
+#food {
+	background-color: lightblue;
+}
