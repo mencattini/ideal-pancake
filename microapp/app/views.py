@@ -1,5 +1,6 @@
 from app import app, models, db
 from flask import render_template, request, redirect, url_for
+
 import asyncio
 
 
@@ -7,7 +8,13 @@ import asyncio
 @app.route('/index')
 def index():
     posts = models.Post.query.all()
-    return render_template('index.html', title='MicroBlog', posts=posts)
+    tri = request.args.get('tri')
+    if tri is not None:
+        loop = asyncio.new_event_loop()
+        res = loop.run_until_complete(tri_by_name(posts))
+        loop.close()
+        return render_template('index.html', title='MicroBlog', posts=res, tri=True)
+    return render_template('index.html', title='MicroBlog', posts=posts, tri=False)
 
 
 @app.route('/add')
@@ -31,3 +38,7 @@ def clean():
     db.session.query(models.Post).delete()
     db.session.commit()
     return redirect(url_for('index'))
+
+
+async def tri_by_name(posts):
+    return sorted(posts, key=lambda post: post.nickname)

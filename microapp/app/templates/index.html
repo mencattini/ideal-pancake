@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>Hi!</h1>
+
 {% if posts|length != 0 %}
 {%for post in posts %}
 <div>
@@ -8,7 +9,22 @@
 {{ post.text }}<hr></p>
 </div>
 {% endfor %}
+
+<form action="/index" method="get">
+{% if tri %}
+<div>
+	<p>Triez : <input type="checkbox" name="tri" checked="checked"></p>
+</div>
+{% else %}
+<div>
+	<p>Triez : <input type="checkbox" name="tri"></p>
+</div>
+{% endif %}
+<input type="submit" value="Soumettre">
+</form>
+
 {% else %}
 <div><p><b>Aucun micro-commentaires. Vous pouvez en ajouter <a href="/add">Ici</a></b></p></div>
 {% endif %}
+
 {% endblock %}

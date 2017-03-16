@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"au",
+				"autofocus\tAttr"
+			],
+			[
 				"set",
 				"set_event_loop\tfunction"
 			],
@@ -67,7 +71,25 @@
 			"file": "microapp/app/views.py",
 			"settings":
 			{
-				"buffer_size": 1218,
+				"buffer_size": 803,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "microapp/app/templates/add.html",
+			"settings":
+			{
+				"buffer_size": 367,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "microapp/config.py",
+			"settings":
+			{
+				"buffer_size": 289,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -159,10 +181,10 @@
 	},
 	"expanded_folders":
 	[
-		"/home/romain/gitFile/ideal-pancake",
 		"/home/romain/gitFile/ideal-pancake/microapp",
 		"/home/romain/gitFile/ideal-pancake/microapp/app",
-		"/home/romain/gitFile/ideal-pancake/microapp/app/templates"
+		"/home/romain/gitFile/ideal-pancake/microapp/app/templates",
+		"/home/romain/gitFile/ideal-pancake/microapp/db_repository"
 	],
 	"file_history":
 	[
@@ -237,7 +259,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -246,15 +268,88 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1218,
+						"buffer_size": 803,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1065,
-								1065
+								803,
+								803
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": ".",
+									"selector": "source.python - string - comment- constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								}
+							],
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 108.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "microapp/app/templates/add.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 367,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								207,
+								207
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "microapp/config.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 289,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								289,
+								289
 							]
 						],
 						"settings":
@@ -270,19 +365,17 @@
 									"selector": "source.python - string - constant.numeric"
 								}
 							],
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Python/Python.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 378.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
+					"buffer": 3,
 					"file": ".gitignore",
 					"semi_transient": false,
 					"settings":
@@ -307,11 +400,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 4,
 					"file": "microapp/app/models.py",
 					"semi_transient": false,
 					"settings":
@@ -335,7 +428,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 4,
 					"type": "text"
 				}
 			]
