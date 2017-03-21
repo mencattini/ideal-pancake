@@ -75,8 +75,25 @@
 			"file": "microapp/app/views.py",
 			"settings":
 			{
-				"buffer_size": 1166,
+				"buffer_size": 1234,
 				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "microapp/app/templates/add.html",
+			"settings":
+			{
+				"buffer_size": 351,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "ideal-pancake.sublime-project",
+			"settings":
+			{
+				"buffer_size": 358,
 				"line_ending": "Unix"
 			}
 		},
@@ -183,6 +200,8 @@
 	],
 	"file_history":
 	[
+		"/home/romain/.config/sublime-text-3/Packages/User/Anaconda.sublime-settings",
+		"/home/romain/.config/sublime-text-3/Packages/Anaconda/Anaconda.sublime-settings",
 		"/home/romain/gitFile/ideal-pancake/microapp/app/templates/base.html",
 		"/home/romain/gitFile/ideal-pancake/microapp/app/foo.py",
 		"/home/romain/gitFile/ideal-pancake/microapp/app/module/models.py",
@@ -206,8 +225,6 @@
 		"/home/romain/uni/master/printemps2017/finance/tp2/tp2.py",
 		"/home/romain/uni/master/printemps2017/finance/tp2/tensor.py",
 		"/home/romain/uni/master/printemps2017/finance/tp2/acf_returns.png",
-		"/home/romain/.config/sublime-text-3/Packages/Anaconda/Anaconda.sublime-settings",
-		"/home/romain/.config/sublime-text-3/Packages/User/Anaconda.sublime-settings",
 		"/home/romain/uni/master/printemps2017/finance/tp2/priceM.dat",
 		"/home/romain/uni/master/printemps2017/finance/tp2/tp2.sublime-project",
 		"/home/romain/virtualPython/vstew/vstew.sublime-project",
@@ -219,7 +236,7 @@
 	],
 	"find":
 	{
-		"height": 26.0
+		"height": 34.0
 	},
 	"find_in_files":
 	{
@@ -233,6 +250,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"np",
+			"length",
 			"nickname",
 			"user",
 			"usd",
@@ -260,7 +279,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -269,15 +288,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1166,
+						"buffer_size": 1234,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								575,
-								575
+								121,
+								121
 							]
 						],
 						"settings":
@@ -291,6 +310,10 @@
 								{
 									"characters": ".",
 									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
 								}
 							],
 							"syntax": "Packages/Python/Python.sublime-syntax",
@@ -298,14 +321,71 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 54.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
+					"file": "microapp/app/templates/add.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 351,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								279,
+								279
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "ideal-pancake.sublime-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 358,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								335,
+								335
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
 					"file": "microapp/app/templates/base.css",
 					"semi_transient": false,
 					"settings":
@@ -330,11 +410,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 4,
 					"file": ".gitignore",
 					"semi_transient": false,
 					"settings":
@@ -358,11 +438,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 5,
 					"file": "microapp/app/models.py",
 					"semi_transient": false,
 					"settings":
@@ -386,7 +466,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
