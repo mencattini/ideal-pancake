@@ -7,7 +7,6 @@ def adding():
     nickname = request.args.get('nickname')
     text = request.args.get('text')
     if text and nickname:
-        nickname = nickname[0:64]
         future = [persist_post(nickname, text) for text in wrap(text, 140)]
         loop = asyncio.new_event_loop()
         loop.run_until_complete(asyncio.wait(future))
@@ -20,5 +19,5 @@ async def persist_post(nickname, text):
     db.session.commit()
 
 """
-tree = ast.pase(a)
+tree = ast.parse(a)
 print(ast.dump(tree))

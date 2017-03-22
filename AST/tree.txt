@@ -1,0 +1,38 @@
+FunctionDef
+├── arguments
+├── name
+├── assign
+│   └── target
+│   │   └──[name]
+│   │       ├── id
+│   │       └── ctx
+│   └── value
+│       └── call
+│           ├── [args]
+│           └── attr
+│               └── attr
+├── assign
+│
+├── if
+│   ├── test
+│   │   └── BoolOp
+│   │       ├── op
+│   │       │   └── [name, name]
+│   │       │       ├── id
+│   │       │       └── ctx
+│   │       └── values
+│   ├── orelse
+│   │   └── []
+│   └── body
+│       ├── assign
+│       ├── assign
+│       └── expr
+└── return
+    └── value
+        └── [call]
+            ├── func
+            │   └── name
+            │       ├── id
+            │       └── ctx
+            │
+            └── args

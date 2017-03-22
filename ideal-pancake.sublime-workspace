@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"et",
+				"entropy\tstatement"
+			],
+			[
 				"tri",
 				"tri_by_name\tfunction"
 			],
@@ -75,7 +79,34 @@
 			"file": "microapp/app/views.py",
 			"settings":
 			{
-				"buffer_size": 1234,
+				"buffer_size": 1262,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "AST/learn_ast.py",
+			"settings":
+			{
+				"buffer_size": 588,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/romain/uni/master/printemps2017/crypto/tp_prog_1/core.py",
+			"settings":
+			{
+				"buffer_size": 596,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/romain/res.txt",
+			"settings":
+			{
+				"buffer_size": 677,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -93,7 +124,7 @@
 			"file": "ideal-pancake.sublime-project",
 			"settings":
 			{
-				"buffer_size": 358,
+				"buffer_size": 349,
 				"line_ending": "Unix"
 			}
 		},
@@ -193,13 +224,11 @@
 	},
 	"expanded_folders":
 	[
-		"/home/romain/gitFile/ideal-pancake",
-		"/home/romain/gitFile/ideal-pancake/microapp",
-		"/home/romain/gitFile/ideal-pancake/microapp/app",
-		"/home/romain/gitFile/ideal-pancake/microapp/app/templates"
+		"/home/romain/gitFile/ideal-pancake"
 	],
 	"file_history":
 	[
+		"/home/romain/uni/master/printemps2017/crypto/tp_prog_1/core.py",
 		"/home/romain/.config/sublime-text-3/Packages/User/Anaconda.sublime-settings",
 		"/home/romain/.config/sublime-text-3/Packages/Anaconda/Anaconda.sublime-settings",
 		"/home/romain/gitFile/ideal-pancake/microapp/app/templates/base.html",
@@ -279,7 +308,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -288,15 +317,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1234,
+						"buffer_size": 1262,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								121,
-								121
+								1093,
+								1093
 							]
 						],
 						"settings":
@@ -314,11 +343,122 @@
 								{
 									"characters": ".",
 									"selector": "source.python - string - constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
 								}
 							],
 							"syntax": "Packages/Python/Python.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 270.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "AST/learn_ast.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 588,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								136,
+								136
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": ".",
+									"selector": "source.python - string - comment- constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								}
+							],
+							"open_with_edit": true,
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/home/romain/uni/master/printemps2017/crypto/tp_prog_1/core.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 596,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								546,
+								546
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": ".",
+									"selector": "source.python - string - comment- constant.numeric"
+								},
+								{
+									"characters": ".",
+									"selector": "source.python - string - constant.numeric"
+								}
+							],
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/home/romain/res.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 677,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								677,
+								677
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -328,7 +468,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 1,
+					"buffer": 4,
 					"file": "microapp/app/templates/add.html",
 					"semi_transient": false,
 					"settings":
@@ -352,16 +492,16 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 5,
 					"file": "ideal-pancake.sublime-project",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 358,
+						"buffer_size": 349,
 						"regions":
 						{
 						},
@@ -381,11 +521,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 6,
 					"file": "microapp/app/templates/base.css",
 					"semi_transient": false,
 					"settings":
@@ -410,11 +550,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 7,
 					"file": ".gitignore",
 					"semi_transient": false,
 					"settings":
@@ -438,11 +578,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 8,
 					"file": "microapp/app/models.py",
 					"semi_transient": false,
 					"settings":
@@ -466,7 +606,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 8,
 					"type": "text"
 				}
 			]
