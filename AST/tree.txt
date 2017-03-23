@@ -1,6 +1,7 @@
 FunctionDef
-├── arguments
-├── name
+│   ├── arguments
+│   └── name
+│
 ├── assign
 │   └── target
 │   │   └──[name]
