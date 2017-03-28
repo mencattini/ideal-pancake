@@ -1,13 +1,13 @@
 from app import db
 
 
-class Post(db.Model):
+class Compte(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nickname = db.Column(db.String(64), index=True)
-    text = db.Column(db.String(140), index=True)
+    account = db.Column(db.Integer, index=True)
 
     def __repr__(self):
-        return 'Post('\
+        return 'Compte'\
             + str(self.id) + ') from : '\
             + self.nickname + '\n\t'\
-            + self.text
+            + self.account

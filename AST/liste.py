@@ -12,7 +12,7 @@ class Liste(Sort):
             if len(args[0]) == 0:
                 self._generator = Liste.empty
             else:
-                self._generator = Liste.add
+                self._generator = Liste.cons
                 self._generator_args = {'self': Liste(args[0][:-1]), 'other': args[0][-1]}
         else:
             Sort.__init__(self, **kwargs)
@@ -22,7 +22,7 @@ class Liste(Sort):
         pass
 
     @generator
-    def add(self: Liste, other: Sort) -> Liste:
+    def cons(self: Liste, other: Sort) -> Liste:
         pass
 
     @operation
@@ -31,6 +31,6 @@ class Liste(Sort):
         if other == Liste.empty():
             return self
 
-        #  x + (y,c) = add(x + y, c)
-        if other == Liste.add(var.y, var.c):
-            return Liste.add(self.append(var.y), var.c)
+        #  x + (y,c) = cons(x + y, c)
+        if other == Liste.cons(var.y, var.c):
+            return Liste.cons(self.append(var.y), var.c)

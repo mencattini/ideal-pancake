@@ -2,29 +2,16 @@
 {% block content %}
 <h1>Hi!</h1>
 
-{% if posts|length != 0 %}
-{%for post in posts %}
+{% if comptes|length != 0 %}
+{%for compte in comptes %}
 <div>
-<p>Post(<b>{{ post.id }})</b> from: <b>{{ post.nickname }}</b><br>
-{{ post.text }}<hr></p>
+<p>Post(<b>{{ compte.id }})</b> from: <b>{{ compte.nickname }}</b><br>
+{{ compte.account }}<hr></p>
 </div>
 {% endfor %}
 
-<form action="/index" method="get">
-{% if tri %}
-<div>
-	<p>Triez : <input type="checkbox" name="tri" checked="checked"></p>
-</div>
 {% else %}
-<div>
-	<p>Triez : <input type="checkbox" name="tri"></p>
-</div>
-{% endif %}
-<input type="submit" value="Soumettre">
-</form>
-
-{% else %}
-<div><p><b>Aucun micro-commentaires. Vous pouvez en ajouter <a href="/add">Ici</a></b></p></div>
+<div><p><b>Aucun compte. Vous pouvez en ajouter <a href="/create">Ici</a></b></p></div>
 {% endif %}
 
 {% endblock %}

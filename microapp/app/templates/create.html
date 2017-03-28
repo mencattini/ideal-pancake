@@ -1,14 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Champs pour rentrer des micro-commentaires</h1>
+<h1>Champs pour créer un compte</h1>
 
-<form action="/adding" accept-charset="UTF-8">
+<form action="/creating">
 	NickName:<br>
 	<input type="text" name="nickname" value="" maxlength="64" autofocus>
 	<br>
-	Micro-compte (ex: +10,-10,+10):<br>
-	<input type="text" name="operations" value="">
-	<br><br>
 	<input type="submit" value="Submit">
 </form>
 {% endblock %}

@@ -1,16 +1,17 @@
 <html>
 	<head>
+	<meta charset="UTF-8">
 	<link rel="icon" href="static/flask.ico" type="image/x-icon">
 	<link rel="stylesheet" href="base.css">
 	{% if title %}
-		<title>{{ title }} - microblog</title>
+		<title>{{ title }} - microcompte</title>
 	{% else %}
-	<title>Weclome to microblog</title>
+	<title>Weclome to microcompte</title>
 	{% endif %}
 	</head>
 	<body>
 		<div>
-		<pre id="t1">Microblog: <a href="index">Home</a> 	Ajout: <a href="add">Add</a> 	Clean: <a href="clean">Clean</a></pre>
+		<pre id="t1">Microcompte: <a href="index">Home</a> 	Ajout: <a href="add">Add</a> 	Clean: <a href="clean">Clean</a> 	Créer compte: <a href="create">Create</a></pre>
 		</div>
 		<hr>
 		{% block content %}{% endblock %}
