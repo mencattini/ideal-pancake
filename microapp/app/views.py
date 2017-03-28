@@ -1,7 +1,7 @@
 from app import app, models, db
 from flask import render_template, request, redirect, url_for
 import asyncio
-from random import randint
+# from random import randint
 
 
 @app.route('/')
@@ -53,7 +53,7 @@ def clean():
 
 async def persist_operation(nickname, operation):
     account = models.Compte.query.filter_by(nickname=nickname).first()
-    await asyncio.sleep(randint(0, 1))
+    await asyncio.sleep(0)
     if account:
         if "+" in operation:
             account.account += int(operation.strip('+'))
