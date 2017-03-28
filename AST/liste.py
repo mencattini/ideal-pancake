@@ -36,3 +36,15 @@ class List(Sort):
         #  x + (y,c) = cons(x + y, c)
         if head == List.cons(tail=var.y, head=var.c):
             return List.cons(tail=tail + var.y, head=var.c)
+
+    def _as_list(self):
+        if self._generator == List.empty:
+            return ''
+        elif self._generator == List.cons:
+            if self._generator_args['tail'] == List.empty():
+                return str(self._generator_args['head'])
+            else:
+                return self._generator_args['tail']._as_list() + "," + str(self._generator_args['head'])
+
+    def __str__(self):
+        return "List(" + self._as_list() + ")"
