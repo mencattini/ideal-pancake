@@ -1,6 +1,9 @@
 from stew.core import Sort, generator, operation
 from stew.matching import var
 
+from nat import Nat
+from bool import Bool
+
 
 class Z(Sort):
     def __init__(self, *args, **kwargs):
@@ -9,13 +12,14 @@ class Z(Sort):
 
             Sort.__init__(self)
             if number == 0:
-                self._generator = Z.zero
+                self._generator = Z.cons
+                self._generator_args = {'pos': Nat.zero(), 'neg': Nat.zero()}
             elif number > 0:
-                self._generator = Z.suc
-                self._generator_args = {'main': Z(number - 1)}
+                self._generator = Z.cons
+                self._generator_args = {'pos': Nat(number), 'neg': Nat.zero()}
             else:
-                self._generator = Z.pre
-                self._generator_args = {'main': Z(number + 1)}
+                self._generator = Z.cons
+                self._generator_args = {'pos': Nat.zero(), 'neg': Nat(-number)}
 
         else:
             Sort.__init__(self, **kwargs)
@@ -24,62 +28,69 @@ class Z(Sort):
     def zero() -> Z: pass
 
     @generator
-    def suc(main: Z) -> Z: pass
-
-    @generator
-    def pre(main: Z) -> Z: pass
+    def cons(pos: Nat, neg: Nat) -> Z: pass
 
     @operation
-    def __add__(main: Z, other: Z) -> Z:
-        # zero + y = y
-        if main == Z.zero():
-            return other
-
-        # suc(x) + y = suc(x + y)
-        if main == Z.suc(var.x):
-            return Z.suc(var.x + other)
-
-        # pre(x) + y = pre(x + y)
-        if main == Z.pre(var.x):
-            return Z.pre(var.x + other)
+    def __add__(self: Z, other: Z) -> Z:
+        self._generator_args['pos'] += other._generator_args['pos']
+        self._generator_args['neg'] += other._generator_args['neg']
+        self.normalize()
+        return self
 
     @operation
-    def inverse(main: Z) -> Z:
-        # if suc we use pre
-        if main == Z.suc(var.x):
-            return Z.pre(var.x.inverse())
-        # if pre we use suc
-        if main == Z.pre(var.x):
-            return Z.suc(var.x.inverse())
-        # if zero then end
-        if main == Z.zero():
-            return Z.zero()
+    def __eq__(self: Z, other: Z) -> Z:
+        x = self._generator_args
+        y = other._generator_args
+        if x['pos'] == y['pos'] and x['neg'] == y['neg']:
+            return Bool.true()
+        return Bool.false()
 
     @operation
-    def __sub__(main: Z, other: Z) -> Z:
-        # zero - y = -y
-        if main == Z.zero():
-            return other.inverse()
+    def __gt__(self: Z, other: Z) -> Z:
+        x = self._generator_args
+        y = other._generator_args
+        if x['pos'] > y['pos']:
+            return Bool.true()
+        elif x['neg'] < y['neg']:
+            return Bool.true()
+        else:
+            return Bool.false()
 
-        # x - zero = x
-        if other == Z.zero():
-            return main
+    @operation
+    def __lt__(self: Z, other: Z) -> Z:
+        x = self._generator_args
+        y = other._generator_args
+        if x['pos'] < y['pos']:
+            return Bool.true()
+        elif x['neg'] > y['neg']:
+            return Bool.true()
+        else:
+            return Bool.false()
 
-        # suc(x) - y = x - pre(y)
-        if main == Z.suc(var.x):
-            return var.x - Z.pre(other)
+    @operation
+    def normalize(self: Z) -> Z:
 
-        # pre(x) - y = x - suc(y)
-        if main == Z.pre(var.x):
-            return var.x - Z.suc(other)
+        if self._generator_args['pos'] == self._generator_args['neg']:
+            self = Z.zero()
 
-    def _as_int(self):
-        if self._generator == Z.zero:
-            return 0
-        elif self._generator == Z.suc:
-            return 1 + self._generator_args['main']._as_int()
-        elif self._generator == Z.pre:
-            return self._generator_args['main']._as_int() - 1
+        elif self._generator_args['pos'] > self._generator_args['neg']:
+            x = self._generator_args['pos']
+            y = self._generator_args['neg']
+            self._generator_args['pos'] = x - y
+            self._generator_args['neg'] = Nat.zero()
+
+        elif self._generator_args['neg'] > self._generator_args['pos']:
+            x = self._generator_args['pos']
+            y = self._generator_args['neg']
+            self._generator_args['pos'] = Nat.zero()
+            self._generator_args['neg'] = y - x
+
+        return self
 
     def __str__(self):
-        return '%s(%i)' % (self.__class__.__name__, self._as_int())
+        x = self._generator_args['pos']
+        y = self._generator_args['neg']
+        if x >= y:
+            return '%s(%s)' % (self.__class__.__name__, x)
+        else:
+            return '%s(-%s)' % (self.__class__.__name__, y)

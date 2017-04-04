@@ -1,9 +1,6 @@
 from stew.core import Sort, generator, operation
 from stew.matching import var
 from collections.abc import Sequence
-from typing import Union
-
-from nat import Nat
 from relative import Z
 
 
@@ -17,7 +14,7 @@ class List(Sort):
                 self._generator = List.empty
             else:
                 self._generator = List.cons
-                self._generator_args = {'tail': List(args[0][:-1]), 'head': (args[0][-1])}
+                self._generator_args = {'tail': List(args[0][:-1]), 'head': Z(args[0][-1])}
         else:
             Sort.__init__(self, **kwargs)
 
@@ -26,7 +23,7 @@ class List(Sort):
         pass
 
     @generator
-    def cons(tail: List, head: Union[Nat, Z]) -> List:
+    def cons(tail: List, head: Z) -> List:
         pass
 
     @operation
