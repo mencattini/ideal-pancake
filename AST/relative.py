@@ -32,10 +32,11 @@ class Z(Sort):
 
     @operation
     def __add__(self: Z, other: Z) -> Z:
-        self._generator_args['pos'] += other._generator_args['pos']
-        self._generator_args['neg'] += other._generator_args['neg']
-        self.normalize()
-        return self
+        x = self._generator_args['pos'] + other._generator_args['pos']
+        y = self._generator_args['neg'] + other._generator_args['neg']
+        z = Z.cons(pos=x, neg=y)
+        z.normalize()
+        return z
 
     @operation
     def __eq__(self: Z, other: Z) -> Z:
@@ -70,22 +71,18 @@ class Z(Sort):
     @operation
     def normalize(self: Z) -> Z:
 
-        if self._generator_args['pos'] == self._generator_args['neg']:
-            self = Z.zero()
+        x = self._generator_args['pos']
+        y = self._generator_args['neg']
 
-        elif self._generator_args['pos'] > self._generator_args['neg']:
-            x = self._generator_args['pos']
-            y = self._generator_args['neg']
-            self._generator_args['pos'] = x - y
-            self._generator_args['neg'] = Nat.zero()
+        # if self.x == 0 or self.y == 0
+        if x == Nat.zero() or y == Nat.zero():
+            return self
 
-        elif self._generator_args['neg'] > self._generator_args['pos']:
-            x = self._generator_args['pos']
-            y = self._generator_args['neg']
-            self._generator_args['pos'] = Nat.zero()
-            self._generator_args['neg'] = y - x
-
-        return self
+        # else we reduce
+        elif x == Nat.suc(var.xx) and y == Nat.suc(var.yy):
+            self._generator_args['pos'] = var.xx
+            self._generator_args['neg'] = var.yy
+            return self.normalize()
 
     def __str__(self):
         x = self._generator_args['pos']
