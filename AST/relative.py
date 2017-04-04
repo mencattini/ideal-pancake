@@ -39,6 +39,14 @@ class Z(Sort):
         return z
 
     @operation
+    def __sub__(self: Z, other: Z) -> Z:
+        x = self._generator_args['pos'] + other._generator_args['neg']
+        y = self._generator_args['neg'] + other._generator_args['pos']
+        z = Z.cons(pos=x, neg=y)
+        z.normalize()
+        return z
+
+    @operation
     def __eq__(self: Z, other: Z) -> Z:
         x = self._generator_args
         y = other._generator_args
