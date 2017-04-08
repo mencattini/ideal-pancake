@@ -38,6 +38,22 @@ class Map(Sort):
 
             return Map.add(self=self._generator_args['self'], key=inside_key, value=self._generator_args['value'])
 
+    @operation
+    def remove(self: Map, key: Z) -> Map:
+
+        # if the map is empty, it's end
+        if self._generator == Map.empty():
+            return Map.empty()
+
+        # if this is an add, we check the value
+        elif self._generator == Map.add:
+            inside_key = self._generator_args['key']
+
+            if inside_key == key:
+                return self._generator_args['self'].remove(key)
+
+            return Map.add(self=self._generator_args['self'].remove(key), key=inside_key, value=self._generator_args['value'])
+
     def _as_dict(self):
         if self._generator == Map.empty:
             return ''
