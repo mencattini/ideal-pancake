@@ -1,5 +1,4 @@
 import ast
-from visitor import Visitor
 
 a = """
 
@@ -21,6 +20,5 @@ async def persist_post(nickname, text):
 
 """
 tree = ast.parse(a)
-# print(ast.dump(tree))
-visitor = Visitor(tree)
-visitor.visit()
+print(ast.dump(tree))
+
