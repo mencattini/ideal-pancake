@@ -1,5 +1,6 @@
 from relative import Z
 from stew.core import Sort, generator, operation
+from bool import Bool
 
 
 class Map(Sort):
@@ -14,7 +15,7 @@ class Map(Sort):
                 key = list(d.keys())[0]
                 value = d.pop(list(d.keys())[0])
                 self._generator = Map.add
-                self._generator_args = {'self': Map(d), 'key': Z(key), 'value': Z(value)}
+                self._generator_args = {'my_map': Map(d), 'key': Z(key), 'value': Z(value)}
 
         else:
             Sort.__init__(self, **kwargs)
@@ -23,45 +24,73 @@ class Map(Sort):
     def empty() -> Map: pass
 
     @generator
-    def add(self: Map, key: Z, value: Z) -> Map:
+    def add(my_map: Map, key: Z, value: Z) -> Map:
 
         # if the map is empty, it's end
-        if self._generator == Map.empty():
+        if my_map._generator == Map.empty():
             return Map.empty()
 
         # if this is an add, we check the value
-        elif self._generator == Map.add:
-            inside_key = self._generator_args['key']
+        elif my_map._generator == Map.add:
+            inside_key = my_map._generator_args['key']
 
             if inside_key == key:
-                self._generator_args['value'] = value
+                my_map._generator_args['value'] = value
 
-            return Map.add(self=self._generator_args['self'], key=inside_key, value=self._generator_args['value'])
+            return Map.add(my_map=my_map._generator_args['my_map'], key=inside_key, value=my_map._generator_args['value'])
 
     @operation
-    def remove(self: Map, key: Z) -> Map:
+    def get_value(my_map: Map, key: Z) -> Map:
+        # if the map is empty , it's end
+        if my_map._generator == Map.empty:
+            return Map.empty()
+
+        elif my_map._generator == Map.add:
+            inside_key = my_map._generator_args['key']
+
+            if inside_key == key:
+                return my_map._generator_args['value']
+
+            return my_map._generator_args['my_map'].get_value(key)
+
+    @operation
+    def has(my_map: Map, key: Z) -> Map:
+        # if the map is empty , it's end
+        if my_map._generator == Map.empty:
+            return Bool.false()
+
+        elif my_map._generator == Map.add:
+            inside_key = my_map._generator_args['key']
+
+            if inside_key == key:
+                return Bool.true()
+
+            return my_map._generator_args['my_map'].has(key)
+
+    @operation
+    def remove(my_map: Map, key: Z) -> Map:
 
         # if the map is empty, it's end
-        if self._generator == Map.empty():
+        if my_map._generator == Map.empty:
             return Map.empty()
 
         # if this is an add, we check the value
-        elif self._generator == Map.add:
-            inside_key = self._generator_args['key']
+        elif my_map._generator == Map.add:
+            inside_key = my_map._generator_args['key']
 
             if inside_key == key:
-                return self._generator_args['self'].remove(key)
-
-            return Map.add(self=self._generator_args['self'].remove(key), key=inside_key, value=self._generator_args['value'])
+                return my_map._generator_args['my_map'].remove(key)
+            else:
+                return Map.add(my_map=my_map._generator_args['my_map'].remove(key), key=inside_key, value=my_map._generator_args['value'])
 
     def _as_dict(self):
         if self._generator == Map.empty:
             return ''
         elif self._generator == Map.add:
-            if self._generator_args['self'] == Map.empty():
+            if self._generator_args['my_map'] == Map.empty():
                 return str(self._generator_args['key']) + ":" + str(self._generator_args['value'])
             else:
-                return self._generator_args['self']._as_dict() + ", " + str(self._generator_args['key']) + ":" + str(self._generator_args['value'])
+                return str(self._generator_args['key']) + ":" + str(self._generator_args['value']) + ", " + self._generator_args['my_map']._as_dict()
 
     def __str__(self):
         return '%s(%s)' % (self.__class__.__name__, self._as_dict())
