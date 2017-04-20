@@ -38,6 +38,13 @@ class List(Sort):
         if head == List.cons(tail=var.y, head=var.c):
             return List.cons(tail=tail + var.y, head=var.c)
 
+    @operation
+    def pop(tail: List) -> List:
+        if tail._generator == List.empty:
+            return List.empty(), List.empty()
+        else:
+            return tail._generator_args['tail'], tail._generator_args['head']
+
     def _as_list(self):
         if self._generator == List.empty:
             return ''

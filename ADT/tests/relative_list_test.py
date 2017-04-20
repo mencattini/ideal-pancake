@@ -1,5 +1,6 @@
 from ADT.types.relative_list import List
 from ADT.types.relative import Z
+import pytest
 
 
 def test_generator():
@@ -40,3 +41,8 @@ def test_add_():
 def test_str_():
     assert List([]).__str__() == 'List()'
     assert List([-1, 0, 1]).__str__() == 'List(Z(-Nat(1)),Z(Nat(0)),Z(Nat(1)))'
+
+
+def test_pop():
+    assert List([-1, 0, 1]).pop() == (List([-1, 0]), Z(1))
+    assert List([]).pop() == (List.empty(), List.empty())
