@@ -1,6 +1,7 @@
 from ADT.types.relative import Z
 from stew.core import Sort, generator, operation
 from ADT.types.bool import Bool
+from ADT.types.relative_list import List
 
 
 class Map(Sort):
@@ -58,7 +59,7 @@ class Map(Sort):
 
     @operation
     def has(my_map: Map, key: Z) -> Map:
-        # same reasonnement as get_value, 
+        # same reasonnement as get_value,
         # but we return true/false instead of value
         # if the map is empty , it's end
         if my_map._generator == Map.empty:
@@ -87,6 +88,15 @@ class Map(Sort):
                 return my_map._generator_args['my_map'].remove(key)
             else:
                 return Map.add(my_map=my_map._generator_args['my_map'].remove(key), key=inside_key, value=my_map._generator_args['value'])
+
+    @operation
+    def keys(my_map: Map) -> List:
+        if my_map._generator == Map.empty:
+            return List.empty()
+
+        elif my_map._generator == Map.add:
+            list_tmp = List.cons(tail=List.empty(), head=my_map._generator_args['key'])
+            return list_tmp + my_map._generator_args['my_map'].keys()
 
     def _as_dict(self):
         if self._generator == Map.empty:

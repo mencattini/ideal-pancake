@@ -1,6 +1,7 @@
 from ADT.types.map import Map
 from ADT.types.relative import Z
 from ADT.types.bool import Bool
+from ADT.types.relative_list import List
 
 
 def test_generator():
@@ -46,3 +47,8 @@ def test_remove():
 def test_str_():
     assert Map.empty().__str__() == 'Map()'
     assert Map({1: 1, -2: -2}).__str__() == 'Map(Z(Nat(1)):Z(Nat(1)), Z(-Nat(2)):Z(-Nat(2)))'
+
+
+def test_keys():
+    assert Map({1: 1, -2: -2}).keys() == List([1, -2])
+    assert Map({}).keys() == List.empty()
