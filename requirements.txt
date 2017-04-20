@@ -31,7 +31,6 @@ six==1.10.0
 SQLAlchemy==1.1.6
 sqlalchemy-migrate==0.11.0
 sqlparse==0.2.3
-stew==0.1
 suds==0.4
 Tempita==0.5.2
 traitlets==4.3.2
