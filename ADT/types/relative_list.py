@@ -38,11 +38,6 @@ class List(Sort):
         if head == List.cons(tail=var.y, head=var.c):
             return List.cons(tail=tail + var.y, head=var.c)
 
-    @operation
-    def append(self: List, other: List) -> List:
-        self = self + other
-        return self
-
     def _as_list(self):
         if self._generator == List.empty:
             return ''
