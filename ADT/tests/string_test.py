@@ -25,3 +25,8 @@ def test_str_():
     assert String('').__str__() == 'String()'
     assert String.empty().__str__() == 'String()'
     assert String('abc').__str__() == 'String(abc)'
+
+
+def test_pop():
+    assert String('abc').pop() == (String('ab'), Char('c'))
+    assert String([]).pop() == (String.empty(), String.empty())

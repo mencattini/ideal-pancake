@@ -37,6 +37,13 @@ class String(Sort):
         if head == String.cons(tail=var.y, head=var.c):
             return String.cons(tail=tail + var.y, head=var.c)
 
+    @operation
+    def pop(tail: String) -> String:
+        if tail._generator == String.empty:
+            return String.empty(), String.empty()
+        else:
+            return tail._generator_args['tail'], tail._generator_args['head']
+
     def _as_list(self):
         if self._generator == String.empty:
             return ''
