@@ -1,6 +1,6 @@
 ## Build Status: Ideal-pancake
 
-![](https://travis-ci.org/mencattini/ideal-pancake.svg?branch=master)  [![Coverage Status](https://coveralls.io/repos/github/mencattini/ideal-pancake/badge.svg?branch=master)](https://coveralls.io/github/mencattini/ideal-pancake?branch=master)
+![](https://travis-ci.org/mencattini/ideal-pancake.svg?branch=master)  [![Coverage Status](https://coveralls.io/repos/github/mencattini/ideal-pancake/badge.svg?branch=master)](https://coveralls.io/github/mencattini/ideal-pancake?branch=master)  [![Requirements Status](https://requires.io/github/mencattini/ideal-pancake/requirements.svg?branch=master)](https://requires.io/github/mencattini/ideal-pancake/requirements/?branch=master)
 
 
 ## Project:
