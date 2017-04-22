@@ -3,6 +3,7 @@ from stew.matching import var
 
 from ADT.types.nat import Nat
 from ADT.types.bool import Bool
+from ADT.types.expr_list import Expr_list
 
 
 class Z(Sort):
@@ -26,6 +27,11 @@ class Z(Sort):
 
     @generator
     def cons(pos: Nat, neg: Nat) -> Z: 
+        pass
+
+    # Possibility to call a function in a Z term
+    @generator
+    def func(e_list: Expr_list) -> Z:
         pass
 
     @operation

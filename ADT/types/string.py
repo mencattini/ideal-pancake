@@ -3,6 +3,8 @@ from stew.core import Sort, generator, operation
 from collections.abc import Sequence
 from stew.matching import var
 
+from ADT.types.expr_list import Expr_list
+
 
 class String(Sort):
     def __init__(self, *args, **kwargs):
@@ -23,6 +25,11 @@ class String(Sort):
 
     @generator
     def cons(tail: String, head: Char) -> String:
+        pass
+
+    # Possibility to call a function in a String term
+    @generator
+    def func(e_list: Expr_list) -> String:
         pass
 
     @operation

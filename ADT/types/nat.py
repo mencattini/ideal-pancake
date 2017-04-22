@@ -3,6 +3,7 @@ from stew.exceptions import ArgumentError
 from stew.matching import var
 
 from ADT.types.bool import Bool
+from ADT.types.expr_list import Expr_list
 
 
 class Nat(Sort):
@@ -30,6 +31,11 @@ class Nat(Sort):
 
     @generator
     def suc(self: Nat) -> Nat: 
+        pass
+
+    # Possibility to call a function in a Nat term
+    @generator
+    def func(e_list: Expr_list) -> Nat:
         pass
 
     @operation
