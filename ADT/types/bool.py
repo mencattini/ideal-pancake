@@ -14,7 +14,8 @@ class Bool(Sort):
 
     # Possibility to call a function in a Bool term
     @generator
-    def func(e_list: Expr_list) -> Bool
+    def func(e_list: Expr_list) -> Bool:
+        pass
 
     @operation
     def __invert__(self: Bool) -> Bool:
