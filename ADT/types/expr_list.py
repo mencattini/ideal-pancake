@@ -3,8 +3,8 @@ from stew.core import Sort, generator, operation
 from ADT.types.expr import Expr
 
 
-''' Expr_list sort is a list of expressions intended to represent the effective parameters in a function call'''
-class Expr_list(Sort)
+class Expr_list(Sort):
+    """ Expr_list sort is a list of expressions intended to represent the effective parameters in a function call"""
 
     @generator
     def empty() -> Expr_list:
@@ -25,4 +25,3 @@ class Expr_list(Sort)
         if e_list == Expr_list.cons(tail=tail, head=head):
             return tail
         # No precision about cdr(empty)
-

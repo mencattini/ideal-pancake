@@ -3,10 +3,8 @@ from stew.core import Sort, generator, operation
 from ADT.types.instr import Instr
 
 
-
-''' Block sort is the list of instructions representing the programm to be executed'''
 class Block(Sort):
-
+    """Block sort is the list of instructions representing the programm to be executed"""
     @generator
     def empty() -> Block:
         pass
@@ -26,6 +24,3 @@ class Block(Sort):
         if block == Block.cons(tail=tail, head=head):
             return tail
         # No precision about cdr(Empty)
-
-
-

@@ -1,4 +1,4 @@
-from stew.core import Sort, generator, operation
+from stew.core import Sort, generator
 
 from ADT.types.bool import Bool
 from ADT.types.nat import Nat
@@ -8,8 +8,9 @@ from ADT.types.relative import Z
 from ADT.types.relative_list import List
 from ADT.types.map import Map
 
-''' Expr sort wraps all python data types considered '''
+
 class Expr(Sort):
+    ''' Expr sort wraps all python data types considered '''
 
     @generator
     def expr_bool(expr: Bool) -> Expr:
