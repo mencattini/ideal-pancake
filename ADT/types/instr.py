@@ -7,8 +7,7 @@ from ADT.types.block import Block
 
 
 class Instr(Sort):
-    """ Instr sort represents an instruction. It may be an assignation, an if or while statement
-or the call of a function"""
+    """ Instr sort represents an instruction. It may be an assignation, an if or while statement or the call of a function"""
 
     # Assignation of an expression to a variable
     @generator

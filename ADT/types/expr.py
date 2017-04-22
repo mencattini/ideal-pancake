@@ -10,7 +10,7 @@ from ADT.types.map import Map
 
 
 class Expr(Sort):
-    ''' Expr sort wraps all python data types considered '''
+    """ Expr sort wraps all python data types considered """
 
     @generator
     def expr_bool(expr: Bool) -> Expr:

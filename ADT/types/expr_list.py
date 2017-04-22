@@ -1,4 +1,5 @@
 from stew.core import Sort, generator, operation
+from stew.matching import var
 
 from ADT.types.expr import Expr
 
@@ -16,12 +17,14 @@ class Expr_list(Sort):
 
     @operation
     def car(e_list: Expr_list) -> Expr:
-        if e_list == Expr_list.cons(tail=tail, head=head):
-            return head
+        if e_list == Expr_list.cons(var.t, var.h):
+            return var.h
         # No precision about car(empty)
+        pass
 
     @operation
     def cdr(e_list: Expr_list) -> Expr_list:
-        if e_list == Expr_list.cons(tail=tail, head=head):
-            return tail
+        if e_list == Expr_list.cons(var.t, var.h):
+            return var.t
         # No precision about cdr(empty)
+        pass
