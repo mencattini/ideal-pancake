@@ -3,7 +3,6 @@ from stew.core import Sort, generator, operation
 
 from ADT.types.bool import Bool
 from ADT.types.relative_list import List
-from ADT.types.expr_list import Expr_list
 
 
 class Map(Sort):
@@ -24,7 +23,7 @@ class Map(Sort):
             Sort.__init__(self, **kwargs)
 
     @generator
-    def empty() -> Map: 
+    def empty() -> Map:
         pass
 
     @generator
@@ -44,11 +43,6 @@ class Map(Sort):
                 my_map._generator_args['value'] = value
 
             return Map.add(my_map=my_map._generator_args['my_map'], key=inside_key, value=my_map._generator_args['value'])
-
-    #Possibility to call a function in a Map term
-    @generator
-    def func(e_list: Expr_list) -> Map:
-        pass
 
     @operation
     def get_value(my_map: Map, key: Z) -> Map:

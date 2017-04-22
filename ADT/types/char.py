@@ -1,7 +1,6 @@
 from stew.core import Sort, generator
 
 from ADT.types.nat import Nat
-from ADT.types.expr_list import Expr_list
 
 
 class Char(Sort):
@@ -18,11 +17,6 @@ class Char(Sort):
 
     @generator
     def char(value: Nat) -> Char:
-        pass
-
-    # Possibility to call a function in a Char term
-    @generator
-    def func(e_list: Expr_list) -> Char:
         pass
 
     def _as_char(self):

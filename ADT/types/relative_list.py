@@ -3,8 +3,6 @@ from stew.matching import var
 from collections.abc import Sequence
 
 from ADT.types.relative import Z
-from ADT.types.expr_list import Expr_list
-
 
 
 class List(Sort):
@@ -25,13 +23,8 @@ class List(Sort):
     def empty() -> List:
         pass
 
-    # Possibility to call a function in a Relative_list term
     @generator
     def cons(tail: List, head: Z) -> List:
-        pass
-
-    @generator
-    def func(e_list: Expr_list) -> List:
         pass
 
     @operation

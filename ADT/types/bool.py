@@ -1,20 +1,14 @@
 from stew.core import Sort, generator, operation
 
-from ADT.types.expr_list import Expr_list
 
 class Bool(Sort):
 
     @generator
-    def true() -> Bool: 
+    def true() -> Bool:
         pass
 
     @generator
-    def false() -> Bool: 
-        pass
-
-    # Possibility to call a function in a Bool term
-    @generator
-    def func(e_list: Expr_list) -> Bool:
+    def false() -> Bool:
         pass
 
     @operation
