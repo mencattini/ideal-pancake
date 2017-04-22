@@ -13,7 +13,7 @@ class Context(Sort):
 
     # @generator
     # def add(my_context: Context, key: String, value: Expr) -> Context:
-    #     return Context.add(remove_key(my_context), key, value)
+    #     return Context.add(remove_key(my_context, key), key, value)
 
     # @operation
     # def contains_key(my_context: Context, key: String) -> Bool:
