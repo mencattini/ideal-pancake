@@ -59,3 +59,6 @@ class Expr(Sort):
     @generator
     def expr_map(expr: Map) -> Expr:
         pass
+
+    def __str__(self):
+        return '%s[%s]' % ("E", self._generator_args['expr'])
