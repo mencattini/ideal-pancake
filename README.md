@@ -24,3 +24,10 @@ We will use:
 
 To reach the previous goals.
 
+### To Do:
+ Correction of :
+ 
+  * block.py
+  * context.py
+  * context_list.py
+  * instr.py
