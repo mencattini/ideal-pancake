@@ -19,22 +19,22 @@ class Instr(Sort):
     def i_while(cond: Bool, block: Block) -> Instr:
         pass
 
-    # Specifies that we end a while statement
-    @generator
-    def i_end_while() -> Instr:
-        pass
-
     # If statement
     @generator
     def i_if(cond: Bool, b_then: Block, b_else: Block) -> Instr:
         pass
 
-    # Specifies that we end an if statement
-    @generator
-    def i_end_if() -> Instr:
-        pass
-
     # Function (procedure) to be executed (we don't care about the returned value if exists)
     @generator
-    def i_func(e_list: Expr_List) -> Instr:
+    def i_func(name: String, e_list: Expr_List) -> Instr:
+        pass
+
+    # Return statement
+    @generator
+    def i_return() -> Instr:
+        pass
+
+    # Notify that the program exits from a function
+    @generator
+    def i_end_func() -> Instr:
         pass

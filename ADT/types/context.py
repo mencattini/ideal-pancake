@@ -34,3 +34,11 @@ class Context(Sort):
     #         if key == var.k:
     #             return remove_key(var.c, key)
     #         return add(remove_key(var.c, key), var.k, var.e)
+
+    # @operation
+    # def get(context: Context, key: String) -> Expr:
+    #     if context == Context.add(var.c, var.k, var.e):
+    #         if key == var.k:
+    #             return var.e
+    #         return get(var.c, key)
+    #     pass

@@ -65,3 +65,17 @@ class Func_list(Sort):
         # No precision about car(Empty)
         pass
 
+    @operation
+    def get(f_list: Func_list, key: String) -> Func:
+        if f_list == Func_list.cons(var.t, var.h):
+            if key = var.h.name:
+                return var.h
+            return Func_list.get(var.t, key)
+        pass
+
+
+
+
+
+
+
