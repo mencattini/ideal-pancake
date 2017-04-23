@@ -31,7 +31,7 @@ class Expr_list(Sort):
         if e_list._generator == Expr_list.cons:
             return e_list._generator_args['head']
         else:
-            return Expr_list.empty()
+            return Expr.empty()
 
     @operation
     def cdr(e_list: Expr_list) -> Expr_list:

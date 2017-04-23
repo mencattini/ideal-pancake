@@ -6,6 +6,7 @@ from ADT.types.map import Map
 
 
 def test_generator():
+    assert Expr.empty()._generator == Expr.empty
     assert Expr.expr_bool(expr=Bool.true())._generator == Expr.expr_bool
     assert Expr.expr_nat(expr=Nat(10))._generator == Expr.expr_nat
     assert Expr.expr_char(expr=Char('a'))._generator == Expr.expr_char

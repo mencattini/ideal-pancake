@@ -33,6 +33,10 @@ class Expr(Sort):
             Sort.__init__(self, **kwargs)
 
     @generator
+    def empty() -> Expr:
+        pass
+
+    @generator
     def expr_bool(expr: Bool) -> Expr:
         pass
 

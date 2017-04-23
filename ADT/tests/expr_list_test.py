@@ -1,9 +1,6 @@
 from ADT.types.expr_list import Expr_list
 from ADT.types.expr import Expr
-from ADT.types.string import Char, String
 from ADT.types.nat import Bool, Nat
-from ADT.types.relative_list import List, Z
-from ADT.types.map import Map
 
 
 def test_generator():
@@ -28,7 +25,7 @@ def test_constructor():
 def test_car():
     a = Expr_list([Bool.true(), Nat(10), Nat(11)])
     assert Expr(Nat(11)) == a.car()
-    assert Expr_list.empty() == Expr_list.empty().car()
+    assert Expr.empty() == Expr_list.empty().car()
 
 
 def test_cdr():
