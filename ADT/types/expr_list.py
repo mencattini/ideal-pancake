@@ -11,7 +11,7 @@ class Expr_list(Sort):
     def empty() -> Expr_list:
         pass
 
-    @generator 
+    @generator
     def cons(tail: Expr_list, head: Expr) -> Expr_list:
         pass
 

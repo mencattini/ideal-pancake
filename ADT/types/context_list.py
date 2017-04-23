@@ -4,8 +4,7 @@ from stew.matching import var
 from ADT.types.context import Context
 
 
-
-class Context_list:
+class Context_list(Sort):
     """ Context_list sort represents the stack of contexts"""
 
     @generator
@@ -29,5 +28,3 @@ class Context_list:
             return var.t
         # No precision about cdr(Empty)
         pass
-
-        

@@ -6,7 +6,7 @@ from ADT.types.instr import Instr
 
 class Block(Sort):
     """Block sort is the list of instructions representing the programm to be executed"""
-    
+
     @generator
     def empty() -> Block:
         pass
