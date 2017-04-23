@@ -24,10 +24,12 @@ We will use:
 
 To reach the previous goals.
 
+### Documentation
+You can learn and understand our structur with the tests. It show how to use the ADT.
+
+
 ### To Do:
  Correction of :
  
   * block.py
-  * context.py
-  * context_list.py
   * instr.py
