@@ -9,17 +9,15 @@ def test_generator():
 
 
 def test_constructor():
-    res = Expr_list([Nat(1) + Nat(2), Nat(0) > Nat(1)]) == Expr_list.cons(
+    assert Expr_list.cons(
         tail=Expr_list.cons(
             tail=Expr_list.empty(),
             head=Expr(Nat(1) + Nat(2))
         ),
         head=Expr(Nat(0) > Nat(1))
-    )
-    assert res == Bool.true()
+    ) == Expr_list([Nat(1) + Nat(2), Nat(0) > Nat(1)])
 
-    res = Expr_list([]) == Expr_list.empty()
-    assert res == Bool.true()
+    assert Expr_list.empty() == Expr_list([])
 
 
 def test_car():
@@ -28,13 +26,7 @@ def test_car():
     assert Expr.empty() == Expr_list.empty().car()
 
 
-def test_cdr():
-    a = Expr_list([Bool.true(), Nat(10), Nat(11)])
-    assert Expr_list([Bool.true(), Nat(10)]) == a.cdr()
-    assert Expr_list.empty() == Expr_list.empty().cdr()
-
-
-def test_eq_():
-    assert Bool.true() == (Expr_list([Bool.true(), Nat(10), Nat(11)]) == Expr_list([Bool.true(), Nat(10), Nat(11)]))
-    assert Bool.true() == (Expr_list([]) == Expr_list.empty())
-    assert Bool.false() == (Expr_list([Bool.true(), Nat(10), Nat(11)]) == Expr_list.empty())
+# def test_cdr():
+#     a = Expr_list([Bool.true(), Nat(10), Nat(11)]).cdr()
+#     assert Expr_list([Bool.true(), Nat(10)]) == a
+#     assert Expr_list.empty() == Expr_list.empty().cdr()
