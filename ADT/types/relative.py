@@ -35,23 +35,27 @@ class Z(Sort):
     @operation
     def __add__(self: Z, other: Z) -> Z:
         # we add pos part together and same for the neg part
-        x = self._generator_args['pos'] + other._generator_args['pos']
-        y = self._generator_args['neg'] + other._generator_args['neg']
+        # x = self._generator_args['pos'] + other._generator_args['pos']
+        # y = self._generator_args['neg'] + other._generator_args['neg']
         # we create a new number with this value
         # and we normalize
-        z = Z.cons(pos=x, neg=y)
-        z.normalize()
-        return z
+        if (self == Z.cons(pos=var.x1, neg=var.x2)) and (other == Z.cons(pos=var.y1, neg=var.y2)):
+            x = var.x1 + var.y1
+            y = var.x2 + var.y2
+            z = Z.cons(pos=x, neg=y)
+            z.normalize()
+            return z
 
     @operation
     def __sub__(self: Z, other: Z) -> Z:
         # to sub we just add the inverse
         # same procedure as the add
-        x = self._generator_args['pos'] + other._generator_args['neg']
-        y = self._generator_args['neg'] + other._generator_args['pos']
-        z = Z.cons(pos=x, neg=y)
-        z.normalize()
-        return z
+        if (self == Z.cons(pos=var.x1, neg=var.x2)) and (other == Z.cons(pos=var.y1, neg=var.y2)):
+            x = var.x1 + var.y2
+            y = var.x2 + var.y1
+            z = Z.cons(pos=x, neg=y)
+            z.normalize()
+            return z
 
     @operation
     def __gt__(self: Z, other: Z) -> Z:
