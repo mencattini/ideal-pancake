@@ -1,5 +1,4 @@
-from ADT.types.expr_list import Expr_list
-from ADT.types.expr import Expr
+from ADT.types.expr_list import Expr, Expr_list
 from ADT.types.nat import Bool, Nat
 
 

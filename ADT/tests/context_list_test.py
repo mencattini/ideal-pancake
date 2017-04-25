@@ -1,6 +1,4 @@
 from ADT.types.context_list import Context, Context_list
-from ADT.types.string import String
-from ADT.types.expr import Expr
 from ADT.types.nat import Nat, Bool
 
 

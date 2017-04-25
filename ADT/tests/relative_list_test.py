@@ -1,6 +1,5 @@
 from ADT.types.relative_list import List
 from ADT.types.relative import Z
-import pytest
 
 
 def test_generator():
