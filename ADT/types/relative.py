@@ -54,57 +54,39 @@ class Z(Sort):
         return z
 
     @operation
-    def __eq__(self: Z, other: Z) -> Z:
-        # we get the two parts
-        x = self._generator_args
-        y = other._generator_args
-        # if they are both equal, it means it's true
-        if x['pos'] == y['pos'] and x['neg'] == y['neg']:
-            return Bool.true()
-        # else return false
-        return Bool.false()
-
-    @operation
     def __gt__(self: Z, other: Z) -> Z:
-        x = self._generator_args
-        y = other._generator_args
-        # if the pos part is greater
-        # it's true
-        if x['pos'] > y['pos']:
-            return Bool.true()
-        # same thing if the neg part is smaller
-        elif x['neg'] < y['neg']:
-            return Bool.true()
-        else:
-            return Bool.false()
+        if (self == Z.cons(pos=var.x1, neg=var.x2)) and (other == Z.cons(pos=var.y1, neg=var.y2)):
+            # if the pos part is greater
+            # it's true
+            if var.x1 > var.y1:
+                return Bool.true()
+            # same thing if the neg part is smaller
+            elif var.x2 < var.y2:
+                return Bool.true()
+            else:
+                return Bool.false()
 
     @operation
     def __lt__(self: Z, other: Z) -> Z:
-        x = self._generator_args
-        y = other._generator_args
-        # simply the oposite of __gt__
-        if x['pos'] < y['pos']:
-            return Bool.true()
-        elif x['neg'] > y['neg']:
-            return Bool.true()
-        else:
-            return Bool.false()
+        if (self == Z.cons(pos=var.x1, neg=var.x2)) and (other == Z.cons(pos=var.y1, neg=var.y2)):
+            # simply the oposite of __gt__
+            if var.x1 < var.y1:
+                return Bool.true()
+            elif var.x2 > var.y2:
+                return Bool.true()
+            else:
+                return Bool.false()
 
     @operation
     def normalize(self: Z) -> Z:
+        if (self == Z.cons(pos=var.x, neg=var.y)):
+            # if self.x == 0 or self.y == 0
+            if var.x == Nat.zero() or var.y == Nat.zero():
+                return self
 
-        x = self._generator_args['pos']
-        y = self._generator_args['neg']
-
-        # if self.x == 0 or self.y == 0
-        if x == Nat.zero() or y == Nat.zero():
-            return self
-
-        # else we reduce
-        elif x == Nat.suc(var.xx) and y == Nat.suc(var.yy):
-            self._generator_args['pos'] = var.xx
-            self._generator_args['neg'] = var.yy
-            return self.normalize()
+            # else we reduce
+            elif var.x == Nat.suc(var.xx) and var.y == Nat.suc(var.yy):
+                return Z.cons(pos=var.xx, neg=var.yy)
 
     def __str__(self):
         x = self._generator_args['pos']

@@ -28,11 +28,6 @@ def test_sub_():
     assert Z(0) - Z(1) == Z(-1)
 
 
-def test_eq_():
-    assert Z(0).__eq__(Z(0)) == Bool.true()
-    assert Z(0).__eq__(Z(1)) == Bool.false()
-
-
 def test_gt_():
     assert Z(1).__gt__(Z(0)) == Bool.true()
     assert Z(1).__gt__(Z(-1)) == Bool.true()

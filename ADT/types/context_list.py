@@ -2,6 +2,7 @@ from stew.core import Sort, generator, operation
 from collections.abc import Sequence
 from ADT.types.bool import Bool
 from ADT.types.context import Context
+from stew.matching import var
 
 
 class Context_list(Sort):
@@ -29,32 +30,17 @@ class Context_list(Sort):
 
     @operation
     def car(c_list: Context_list) -> Context:
-        if c_list._generator == Context_list.cons:
-            return c_list._generator_args['head']
+        if c_list == Context_list.cons(tail=var.tail, head=var.head):
+            return var.head
         else:
             return Context.empty()
 
     @operation
     def cdr(c_list: Context_list) -> Context_list:
-        if c_list._generator == Context_list.cons:
-            return c_list._generator_args['tail']
+        if c_list == Context_list.cons(tail=var.tail, head=var.head):
+            return var.tail
         else:
             return Context_list.empty()
-
-    @operation
-    def __eq__(self: Context_list, other: Context_list) -> Bool:
-        # if it's two empty expr list they are equal
-        if self._generator == Context_list.empty and other._generator == self._generator:
-            return Bool.true()
-        # if a generator is empty and the other is cons
-        elif not(self._generator == other._generator):
-            return Bool.false()
-        # if the generators are equal we continue
-        elif self._generator_args['head'] == other._generator_args['head']:
-            return self._generator_args['tail'].__eq__(other._generator_args['tail'])
-        # else we stop
-        else:
-            return Bool.false()
 
     def _as_list(self):
         if self._generator == Context_list.empty:

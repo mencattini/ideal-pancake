@@ -39,10 +39,10 @@ class String(Sort):
 
     @operation
     def pop(tail: String) -> String:
-        if tail._generator == String.empty:
-            return String.empty(), String.empty()
+        if tail == String.cons(tail=var.tail, head=var.head):
+            return var.tail, var.head
         else:
-            return tail._generator_args['tail'], tail._generator_args['head']
+            return String.empty(), String.empty()
 
     def _as_list(self):
         if self._generator == String.empty:
