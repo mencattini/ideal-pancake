@@ -2,7 +2,7 @@ from stew.core import Sort, generator, operation
 from stew.matching import var
 from collections.abc import Sequence
 
-from ADT.types.relative import Z
+from adt.types.relative import Z
 
 
 class List(Sort):

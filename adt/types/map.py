@@ -1,8 +1,8 @@
-from ADT.types.relative import Z
+from adt.types.relative import Z
 from stew.core import Sort, generator, operation
 from stew.matching import var
-from ADT.types.bool import Bool
-from ADT.types.relative_list import List
+from adt.types.bool import Bool
+from adt.types.relative_list import List
 
 
 class Map(Sort):

@@ -1,6 +1,6 @@
-from ADT.types.relative import Z
-from ADT.types.nat import Nat
-from ADT.types.bool import Bool
+from adt.types.relative import Z
+from adt.types.nat import Nat
+from adt.types.bool import Bool
 
 
 def test_generator():

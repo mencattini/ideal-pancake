@@ -1,5 +1,5 @@
-from ADT.types.context_list import Context, Context_list
-from ADT.types.nat import Nat, Bool
+from adt.types.context_list import Context, Context_list
+from adt.types.nat import Nat, Bool
 
 
 def test_generator():

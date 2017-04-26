@@ -1,8 +1,8 @@
 from stew.core import Sort, generator, operation
 from stew.matching import var
 
-from ADT.types.nat import Nat
-from ADT.types.bool import Bool
+from adt.types.nat import Nat
+from adt.types.bool import Bool
 
 
 class Z(Sort):

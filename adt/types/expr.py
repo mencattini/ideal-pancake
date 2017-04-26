@@ -1,12 +1,12 @@
 from stew.core import Sort, generator
 
-from ADT.types.bool import Bool
-from ADT.types.nat import Nat
-from ADT.types.char import Char
-from ADT.types.string import String
-from ADT.types.relative import Z
-from ADT.types.relative_list import List
-from ADT.types.map import Map
+from adt.types.bool import Bool
+from adt.types.nat import Nat
+from adt.types.char import Char
+from adt.types.string import String
+from adt.types.relative import Z
+from adt.types.relative_list import List
+from adt.types.map import Map
 
 
 class Expr(Sort):

@@ -1,5 +1,5 @@
-from ADT.types.expr_list import Expr, Expr_list
-from ADT.types.nat import Bool, Nat
+from adt.types.expr_list import Expr, Expr_list
+from adt.types.nat import Bool, Nat
 
 
 def test_generator():

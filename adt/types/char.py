@@ -1,6 +1,6 @@
 from stew.core import Sort, generator
 
-from ADT.types.nat import Nat
+from adt.types.nat import Nat
 
 
 class Char(Sort):

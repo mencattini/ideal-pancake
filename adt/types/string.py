@@ -1,4 +1,4 @@
-from ADT.types.char import Char
+from adt.types.char import Char
 from stew.core import Sort, generator, operation
 from collections.abc import Sequence
 from stew.matching import var

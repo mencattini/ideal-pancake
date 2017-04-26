@@ -1,7 +1,7 @@
 from stew.core import Sort, generator, operation
 from stew.matching import var
 
-from ADT.types.instr import Instr
+from adt.types.instr import Instr
 
 
 class Block(Sort):

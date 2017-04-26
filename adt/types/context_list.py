@@ -1,7 +1,6 @@
 from stew.core import Sort, generator, operation
 from collections.abc import Sequence
-from ADT.types.bool import Bool
-from ADT.types.context import Context
+from adt.types.context import Context
 from stew.matching import var
 
 

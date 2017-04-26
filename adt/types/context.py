@@ -1,7 +1,7 @@
 from stew.core import Sort, generator, operation
-from ADT.types.bool import Bool
-from ADT.types.string import String
-from ADT.types.expr import Expr
+from adt.types.bool import Bool
+from adt.types.string import String
+from adt.types.expr import Expr
 from collections import OrderedDict
 from stew.matching import var
 

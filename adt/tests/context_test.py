@@ -1,7 +1,7 @@
-from ADT.types.context import Context
-from ADT.types.string import String
-from ADT.types.expr import Expr
-from ADT.types.nat import Nat, Bool
+from adt.types.context import Context
+from adt.types.string import String
+from adt.types.expr import Expr
+from adt.types.nat import Nat, Bool
 
 
 def test_generator():
