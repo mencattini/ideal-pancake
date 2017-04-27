@@ -24,17 +24,10 @@ class Instr(Sort):
     def i_if(cond: Bool, b_then: Block, b_else: Block) -> Instr:
         pass
 
-    # Function (procedure) to be executed (we don't care about the returned value if exists)
-    @generator
-    def i_func(name: String, e_list: Expr_List) -> Instr:
-        pass
-
     # Return statement
     @generator
-    def i_return() -> Instr:
+    def i_return(expr: Expr) -> Instr:
         pass
 
-    # Notify that the program exits from a function
-    @generator
-    def i_end_func() -> Instr:
-        pass
+
+

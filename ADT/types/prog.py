@@ -2,7 +2,6 @@ from stew.core import Sort, Attribute, generator, operation
 from stew.matching import var
 
 from ADT.types.expr_list import Expr_list
-from ADT.types.context_list import Context_list
 from ADT.types.funct_list import String_list, Func_list, Func
 from ADT.types.block import Block
 from ADT.types.context import Context
@@ -14,7 +13,7 @@ from ADT.types.bool import Bool
 class Prog(Sort):
     """Prog sort represents the whole program state with the related list of contexts, list of functions and block of instructions"""
 
-    context_list = Attribute(domain = Context_list)
+    context = Attribute(domain = Context)
     func_list = Attribute(domain = Func_list)
     block = Attribute(domain = Block)
 
@@ -31,12 +30,12 @@ class Prog(Sort):
         if car(prog.block) == Instr.i_if(var.cond, var.b_then, var.b_else):
             if var.cond == Bool.true():
                 return prog.where(
-                        context_list = prog.context_list,
+                        context = prog.context,
                         func_list = prog.func_list,
                         block = Block.concat(Block.cdr(prog.block), var.b_then))
             if var.cond == Bool.false():
                 return prog.where(
-                        context_list = prog.context_list,
+                        context = prog.context,
                         func_list = prog.func_list,
                         block = Block.concat(Block.cdr(prog.block), var.b_else))
             pass
@@ -45,29 +44,35 @@ class Prog(Sort):
         if car(prog.block) == Instr.i_while(var.cond, var.block):
             if var.cond == Bool.true():
                 return prog.where(
-                        context_list = prog.context_list,
+                        context = prog.context,
                         func_list = prog.func_list,
                         block = Block.concat(prog.block, var.block))
             if var.cond == Bool.false():
                 return prog.where(
-                        context_list = prog.context_list,
+                        context = prog.context,
                         func_list = prog.func_list,
                         block = cdr(prog.block))
             pass
 
-        # function statement
-        if (car(prog.block) == Instr.i_func(var.name, var.e_list) and var.func == Func_list.get(prog.func_list, var.name)):
+        # assign statement
+        if car(prog.block) == Instr.i_assign(var.name, var.expr):
             return prog.where(
-                    context_list = cons(prog.context_list, fun2cxt(Context.empty(), var.func.params, var.e_list)),
-                    func_list = prog.func_list,
-                    block = Block.concat(Block.cdr(prog.block), var.func.block))
-
-        # return statement
-        if car(prog.block) == Instr.i_return():
-            return prog.where(
-                    context_list = cdr(prog.context_list),
+                    context = add(prog.context, var.name, var.expr),
                     func_list = prog.func_list,
                     block = cdr(prog.block))
+        pass
+
+    @operation
+    def eval_func(prog: Prog) -> Prog:
+        # Function call in condition
+        if car(prog.block) == Instr.i_if(var.cond, var.b_then, var.b_else):
+
+        
+
+
+
+
+
 
 
 
