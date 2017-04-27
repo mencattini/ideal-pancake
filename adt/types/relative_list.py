@@ -2,7 +2,7 @@ from stew.core import Sort, generator, operation
 from stew.matching import var
 from collections.abc import Sequence
 
-from ADT.types.relative import Z
+from adt.types.relative import Z
 
 
 class List(Sort):
@@ -41,10 +41,10 @@ class List(Sort):
 
     @operation
     def pop(tail: List) -> List:
-        if tail._generator == List.empty:
-            return List.empty(), List.empty()
+        if tail == List.cons(tail=var.tail, head=var.head):
+            return var.tail, var.head
         else:
-            return tail._generator_args['tail'], tail._generator_args['head']
+            return List.empty(), List.empty()
 
     def _as_list(self):
         if self._generator == List.empty:

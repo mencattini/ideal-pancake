@@ -1,6 +1,6 @@
-from ADT.types.relative import Z
-from ADT.types.nat import Nat
-from ADT.types.bool import Bool
+from adt.types.relative import Z
+from adt.types.nat import Nat
+from adt.types.bool import Bool
 
 
 def test_generator():
@@ -26,11 +26,6 @@ def test_sub_():
     assert Z(1) - Z(0) == Z(1)
     assert Z(0) - Z(-1) == Z(1)
     assert Z(0) - Z(1) == Z(-1)
-
-
-def test_eq_():
-    assert Z(0).__eq__(Z(0)) == Bool.true()
-    assert Z(0).__eq__(Z(1)) == Bool.false()
 
 
 def test_gt_():

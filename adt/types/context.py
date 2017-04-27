@@ -1,8 +1,9 @@
 from stew.core import Sort, generator, operation
-from ADT.types.bool import Bool
-from ADT.types.string import String
-from ADT.types.expr import Expr
+from adt.types.bool import Bool
+from adt.types.string import String
+from adt.types.expr import Expr
 from collections import OrderedDict
+from stew.matching import var
 
 
 class Context(Sort):
@@ -68,68 +69,67 @@ class Context(Sort):
     def add(my_context: Context, key: String, value: Expr) -> Context:
 
         # if the map is empty, it's end
-        if my_context._generator == Context.empty():
+        if my_context == Context.empty():
             return Context.empty()
 
         # if this is an add, we check the value
-        elif my_context._generator == Context.add:
-            inside_key = my_context._generator_args['key']
-
+        elif my_context == Context.add(my_context=var.context, key=var.key, value=var.value):
             # if the keys are equals
-            if inside_key == key:
+            if var.key == key:
                 # we change the value
-                my_context._generator_args['value'] = value
-
-            return Context.add(my_context=my_context._generator_args['my_context'], key=inside_key, value=my_context._generator_args['value'])
+                return Context.add(
+                    my_context=var.context,
+                    key=var.key,
+                    value=value)
+            else:
+                return Context.add(
+                    my_context=var.context,
+                    key=var.key,
+                    value=var.value)
 
     @operation
     def get_value(my_context: Context, key: String) -> Expr:
         # if the map is empty , it's end
-        if my_context._generator == Context.empty:
+        if my_context == Context.empty():
             return Expr.empty()
 
-        elif my_context._generator == Context.add:
-            inside_key = my_context._generator_args['key']
+        elif my_context == Context.add(my_context=var.context, key=var.key, value=var.value):
             # if the keys are equals we return the value
-            if inside_key == key:
-                return my_context._generator_args['value']
+            if var.key == key:
+                return var.value
             # we juste continue the recursive function
-            return my_context._generator_args['my_context'].get_value(key)
+            return (var.context).get_value(key)
 
     @operation
     def has(my_context: Context, key: String) -> Bool:
         # same reasonnement as get_value,
         # but we return true/false instead of value
         # if the map is empty , it's end
-        if my_context._generator == Context.empty:
+        if my_context == Context.empty():
             return Bool.false()
 
-        elif my_context._generator == Context.add:
-            inside_key = my_context._generator_args['key']
-
-            if inside_key == key:
+        elif my_context == Context.add(my_context=var.context, key=var.key, value=var.value):
+            if var.key == key:
                 return Bool.true()
 
-            return my_context._generator_args['my_context'].has(key)
+            return (var.context).has(key)
 
     @operation
     def remove(my_context: Context, key: String) -> Context:
         # we build a map without the given key
         # if the map is empty, it's end
-        if my_context._generator == Context.empty:
+        if my_context == Context.empty():
             return Context.empty()
 
         # if this is an add, we check the value
-        elif my_context._generator == Context.add:
-            inside_key = my_context._generator_args['key']
-
-            if inside_key == key:
-                return my_context._generator_args['my_context'].remove(key)
+        elif my_context == Context.add(my_context=var.context, key=var.key, value=var.value):
+            if var.key == key:
+                return (var.context).remove(key)
             else:
                 return Context.add(
-                    my_context=my_context._generator_args['my_context'].remove(key),
-                    key=inside_key,
-                    value=my_context._generator_args['value'])
+                    my_context=(var.context).remove(key),
+                    key=var.key,
+                    value=var.value)
 
     def _as_dict(self):
         if self._generator == Context.empty:

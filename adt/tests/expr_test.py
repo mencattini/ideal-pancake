@@ -1,8 +1,8 @@
-from ADT.types.expr import Expr
-from ADT.types.string import Char, String
-from ADT.types.nat import Bool, Nat
-from ADT.types.relative_list import List, Z
-from ADT.types.map import Map
+from adt.types.expr import Expr
+from adt.types.string import Char, String
+from adt.types.nat import Bool, Nat
+from adt.types.relative_list import List, Z
+from adt.types.map import Map
 
 
 def test_generator():

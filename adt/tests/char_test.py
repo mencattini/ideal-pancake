@@ -1,5 +1,5 @@
-from ADT.types.char import Char
-from ADT.types.nat import Nat
+from adt.types.char import Char
+from adt.types.nat import Nat
 
 
 def test_generator():

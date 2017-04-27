@@ -33,3 +33,4 @@ You can learn and understand our structur with the tests. It show how to use the
  
   * block.py
   * instr.py
+  * correction egality expr_list

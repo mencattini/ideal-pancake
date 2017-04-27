@@ -1,7 +1,7 @@
-from ADT.types.map import Map
-from ADT.types.relative import Z
-from ADT.types.bool import Bool
-from ADT.types.relative_list import List
+from adt.types.map import Map
+from adt.types.relative import Z
+from adt.types.bool import Bool
+from adt.types.relative_list import List
 
 
 def test_generator():

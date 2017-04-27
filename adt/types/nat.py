@@ -2,7 +2,7 @@ from stew.core import Sort, generator, operation
 from stew.exceptions import ArgumentError
 from stew.matching import var
 
-from ADT.types.bool import Bool
+from adt.types.bool import Bool
 
 
 class Nat(Sort):
