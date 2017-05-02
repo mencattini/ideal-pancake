@@ -92,7 +92,7 @@ class FixPoint():
 
 
 if __name__ == '__main__':
-    s = State([{'await': [4, 5, 6]}, 7])
+    s = State([1, {'await': [4, 5]}, 7])
     fix_point = FixPoint(s)
     fix_point.run()
     fix_point.print_space_state()
