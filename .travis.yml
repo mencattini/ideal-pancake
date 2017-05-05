@@ -7,7 +7,7 @@ install:
   - pip install git+https://github.com/kyouko-taiga/stew
 # command to run tests
 script: 
-  - py.test --cov-report= --cov=ADT
+  - py.test --cov-report=
 after_success:
   - coveralls
 
