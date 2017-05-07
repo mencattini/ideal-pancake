@@ -2,10 +2,12 @@ from stew.core import Sort, generator, operation
 from collections.abc import Sequence
 from adt.types.expr import Expr
 from stew.matching import var
+from adt.types.nat import Nat
 
 
 class Expr_list(Sort):
-    """ Expr_list sort is a list of expressions intended to represent the effective parameters in a function call"""
+    """ Expr_list sort is a list of expressions intended to represent the
+    effective parameters in a function call"""
 
     def __init__(self, *args, **kwargs):
         if (len(args) == 1) and isinstance(args[0], Sequence):
@@ -14,7 +16,9 @@ class Expr_list(Sort):
                 self._generator = Expr_list.empty
             else:
                 self._generator = Expr_list.cons
-                self._generator_args = {'tail': Expr_list(args[0][:-1]), 'head': Expr(args[0][-1])}
+                self._generator_args = {
+                    'tail': Expr_list(args[0][:-1]),
+                    'head': Expr(args[0][-1])}
         else:
             Sort.__init__(self, **kwargs)
 
@@ -40,13 +44,43 @@ class Expr_list(Sort):
         else:
             return Expr_list.empty()
 
+    @operation
+    def rm_nth(e_list: Expr_list, n: Nat) -> Expr_list:
+        # if the list is empty, just return empty
+        if e_list == Expr_list.empty():
+            return Expr_list.empty()
+        elif e_list == Expr_list.cons(tail=var.tail, head=var.head):
+            # if it's the end, we return the tail
+            if n == Nat.zero():
+                return var.tail
+            # or we construct list and decrease the index
+            else:
+                return Expr_list.cons(
+                    tail=var.tail.rm_nth(n - Nat(1)),
+                    head=var.head)
+
+    @operation
+    def __add__(tail: Expr_list, head: Expr_list) -> Expr_list:
+        # x + [] = x
+        if head == Expr_list.empty():
+            return tail
+        # [] + y = y
+        if tail == Expr_list.empty():
+            return head
+        #  x + (y,c) = cons(x + y, c)
+        if head == Expr_list.cons(tail=var.y, head=var.c):
+            return Expr_list.cons(tail=tail + var.y, head=var.c)
+
+
     def _as_list(self):
         if self._generator == Expr_list.empty:
             return ''
         elif self._generator == Expr_list.cons:
             if self._generator_args['tail']._generator == Expr_list.empty:
                 return self._generator_args['head'].__str__()
-            return self._generator_args['tail']._as_list() + ',' + self._generator_args['head'].__str__()
+            return (
+                self._generator_args['tail']._as_list() +
+                ',' + self._generator_args['head'].__str__())
 
     def __str__(self):
         return '%s(%s)' % (self.__class__.__name__, self._as_list())
