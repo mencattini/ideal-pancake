@@ -27,7 +27,13 @@ def test_car():
     assert Expr.empty() == Expr_list.empty().car()
 
 
-# def test_cdr():
-#     a = Expr_list([Bool.true(), Nat(10), Nat(11)]).cdr()
-#     assert Expr_list([Bool.true(), Nat(10)]) == a
-#     assert Expr_list.empty() == Expr_list.empty().cdr()
+def test_cdr():
+    a = Expr_list([Bool.true(), Nat(10), Nat(11)]).cdr()
+    assert Expr_list([Bool.true(), Nat(10)]).equality(a)
+    assert Expr_list.empty().equality(Expr_list.empty().cdr())
+
+
+def test_rm_nth():
+    a = Expr_list([Bool.true(), Nat(10), Nat(11)])
+    assert a.rm_nth(Nat(0)).equality(Expr_list([Nat(10), Nat(11)]))
+    assert a.rm_nth(Nat(1)).equality(Expr_list([Bool.true(), Nat(11)]))
