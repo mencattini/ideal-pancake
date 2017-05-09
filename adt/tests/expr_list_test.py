@@ -4,7 +4,9 @@ from adt.types.nat import Bool, Nat
 
 def test_generator():
     assert Expr_list.empty()._generator == Expr_list.empty
-    assert Expr_list.cons(tail=Expr_list.empty(), head=Expr(Nat(10)))._generator == Expr_list.cons
+    assert Expr_list.cons(
+        tail=Expr_list.empty(),
+        head=Expr(Nat(10)))._generator == Expr_list.cons
 
 
 def test_constructor():
