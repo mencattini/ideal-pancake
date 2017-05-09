@@ -33,6 +33,7 @@ def test_cdr():
     assert Expr_list.empty().equality(Expr_list.empty().cdr())
 
 
-def test_reverse():
+def test_rm_nth():
     a = Expr_list([Bool.true(), Nat(10), Nat(11)])
-    assert a.reverse().equality(Expr_list([Nat(11), Nat(10), Bool.true()]))
+    assert a.rm_nth(Nat(0)).equality(Expr_list([Nat(10), Nat(11)]))
+    assert a.rm_nth(Nat(1)).equality(Expr_list([Bool.true(), Nat(11)]))
