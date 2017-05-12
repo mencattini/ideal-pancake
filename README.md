@@ -26,11 +26,3 @@ To reach the previous goals.
 
 ### Documentation
 You can learn and understand our structur with the tests. It show how to use the ADT.
-
-
-### To Do:
- Correction of :
- 
-  * block.py
-  * instr.py
-  * correction egality expr_list
