@@ -1,13 +1,49 @@
 from stew.core import Sort, generator, operation
 from adt.types.bool import Bool
 from adt.types.string import String
-from adt.types.expr import Expr
+from adt.types.literal import Literal
 from collections import OrderedDict
 from stew.matching import var
 
 
 class Context(Sort):
     """ Context sort represents the list of all substitutions for a specific context"""
+    pass
+    # @generator
+    # def empty() -> Context:
+    #     pass
+
+    # @generator
+    # def add(my_context: Context, key: String, value: Expr) -> Context:
+    #     return Context.add(remove_key(my_context, key), key, value)
+
+    # @operation
+    # def contains_key(my_context: Context, key: String) -> Bool:
+    #     if my_context == Context.empty():
+    #         return Bool.false()
+
+    #     if my_context == Context.add(var.c, var.k, var.e):
+    #         if key == var.k:
+    #             return Bool.true()
+    #         return contains_key(var.c, key)
+    #
+    # @operation
+    # def remove_key(my_context: Context, key: String) -> Context:
+    #     if my_context == Context.empty():
+    #         return my_context
+
+    #     if my_context == Context.add(var.c, var.k, var.e):
+    #         if key == var.k:
+    #             return remove_key(var.c, key)
+    #         return add(remove_key(var.c, key), var.k, var.e)
+
+    # @operation
+    # def get(context: Context, key: String) -> Expr:
+    #     if context == Context.add(var.c, var.k, var.e):
+    #         if key == var.k:
+    #             return var.e
+    #         return get(var.c, key)
+    #     pass
 
     def __init__(self, *args, **kwargs):
         if (len(args) == 1) and isinstance(args[0], dict):
@@ -30,7 +66,7 @@ class Context(Sort):
         pass
 
     @generator
-    def add(my_context: Context, key: String, value: Expr) -> Context:
+    def add(my_context: Context, key: String, value: Literal) -> Context:
 
         # if the map is empty, it's end
         if my_context == Context.empty():
@@ -52,7 +88,7 @@ class Context(Sort):
                     value=var.value)
 
     @operation
-    def get_value(my_context: Context, key: String) -> Expr:
+    def get_value(my_context: Context, key: String) -> Literal:
         # if the map is empty , it's end
         if my_context == Context.empty():
             return Expr.empty()

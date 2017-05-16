@@ -28,3 +28,22 @@ class Block(Sort):
             return var.t
         # No precision about cdr(Empty)
         pass
+    
+    @operation
+    def last(block: Block) -> Instr:
+        if Block.cdr(block) == Block.empty():
+            return Block.car(block)
+        return Block.last(Block.cdr(block))
+
+    @operation
+    def pop_end(block: Block) -> Block:
+        if Block.cdr(block) == Block.empty():
+            return Block.empty()
+        return Block.cons(Block.car(block), pop_end(Block.cdr(block)))
+
+    @operation
+    def concat(tail: Block, head: Block) -> Block:
+        if head == Block.empty():
+            return tail
+        return Block.concat(Block.cons(Block.last(head), tail), Block.pop_end(head))
+
