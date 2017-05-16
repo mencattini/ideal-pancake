@@ -1,7 +1,7 @@
 from stew.core import Sort, generator, operation
 from adt.types.bool import Bool
 from adt.types.string import String
-from adt.types.expr import Expr
+from adt.types.literal import Literal
 from collections import OrderedDict
 from stew.matching import var
 
@@ -66,7 +66,7 @@ class Context(Sort):
         pass
 
     @generator
-    def add(my_context: Context, key: String, value: Expr) -> Context:
+    def add(my_context: Context, key: String, value: Literal) -> Context:
 
         # if the map is empty, it's end
         if my_context == Context.empty():
@@ -88,7 +88,7 @@ class Context(Sort):
                     value=var.value)
 
     @operation
-    def get_value(my_context: Context, key: String) -> Expr:
+    def get_value(my_context: Context, key: String) -> Literal:
         # if the map is empty , it's end
         if my_context == Context.empty():
             return Expr.empty()

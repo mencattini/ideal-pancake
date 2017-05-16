@@ -11,22 +11,22 @@ class Instr(Sort):
 
     # Assignation of an expression to a variable
     @generator
-    def i_assign(varName: String, expr: Expr) -> Instr:
-        pass
-
-    # While statement
-    @generator
-    def i_while(cond: Bool, block: Block) -> Instr:
+    def assign(varName: String, expr: Expr) -> Instr:
         pass
 
     # If statement
     @generator
-    def i_if(cond: Bool, b_then: Block, b_else: Block) -> Instr:
+    def if(cond: Expr, b_then: Block, b_else: Block) -> Instr:
         pass
 
-    # Return statement
+    # While statement
     @generator
-    def i_return(expr: Expr) -> Instr:
+    def while(cond: Expr, block: Block) -> Instr:
+        pass
+
+    # Expression statement
+    @generator
+    def expr(expr: Expr) -> Instr:
         pass
 
 
