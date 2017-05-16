@@ -5,7 +5,8 @@ class Traductor(ast.NodeVisitor):
 
     def __init__(self):
         # we store the built prog
-        self.prog = "\n"
+        self.prog = ""
+        self.line = []
 
     def visit_Module(self, node):
         """Visit the module body
@@ -16,10 +17,20 @@ class Traductor(ast.NodeVisitor):
             tmp = self.visit(ele)
             if tmp:
                 self.prog += tmp + "\n"
+                self.line.append(ele.lineno)
 
     def visit_FunctionDef(self, node):
         # first we store the name of func
         s = "Func(String(%s), " % (node.name)
+        s += "[%s], " % (", ".join([ele.arg for ele in node.args.args]))
+        s += 'Expr_list([%s]))' % (
+            ", ".join([self.visit(ele) for ele in node.body])
+            )
+        return s
+
+    def visit_AsyncFunctionDef(self, node):
+        # first we store the name of func
+        s = "AsyncFunc(String(%s), " % (node.name)
         s += "[%s], " % (", ".join([ele.arg for ele in node.args.args]))
         s += 'Expr_list([%s]))' % (
             ", ".join([self.visit(ele) for ele in node.body])
@@ -92,10 +103,20 @@ class Traductor(ast.NodeVisitor):
         s += self.visit(node.comparators[0])
         return s
 
+    def visit_Call(self, node):
+        s = 'Call(%s, %s)' % (
+            self.visit(node.func),
+            ", ".join([self.visit(arg) for arg in node.args])
+            )
+        return s
+
     def visit_Expr(self, node):
         """Give us the value of an expression
         """
         return 'Expr(%s)' % (self.visit(node.value))
+
+    def visit_Await(self, node):
+        return 'Await(%s)' % (self.visit(node.value))
 
     def visit_BinOp(self, node):
         s = ""
@@ -106,8 +127,13 @@ class Traductor(ast.NodeVisitor):
         return s
 
     def visit_UnaryOp(self, node):
-        if node.op.__class__ == ast.USub:
-            return "-" + self.visit(node.operand)
+        return self.visit(node.op) + self.visit(node.operand)
+
+    def visit_USub(self, node):
+        return "-"
+
+    def visit_UAdd(self, node):
+        return "+"
 
     def visit_Gt(self, node):
         return ">"
@@ -123,6 +149,9 @@ class Traductor(ast.NodeVisitor):
 
     def visit_Eq(self, node):
         return "=="
+
+    def visit_NotEq(self, node):
+        return "!="
 
     def visit_Div(self, node):
         return " / "
@@ -141,6 +170,13 @@ class Traductor(ast.NodeVisitor):
 
     def visit_Num(self, node):
         return 'Z(%s)' % (str(node.n))
+
+
+def print_prog(program, line):
+    print("\n")
+    for [expr, no] in zip(program.split('\n'), line):
+        print(no, ".\t", expr)
+    print("\n")
 
 
 if __name__ == '__main__':
@@ -165,9 +201,18 @@ def my_func(a,b,c):
     res = a + b
     res = res / c
     return res
+
+async def func(a, b, c):
+    res = a + b
+    await res / c
+    return res
+
+func(1, 2, 3)
         """
     t = ast.parse(s)
-    print(ast.dump(t))
+    # print(s)
+    # print(ast.dump(t))
     x = Traductor()
     x.visit(t)
-    print(x.prog)
+    print_prog(s, list(range(len(s))))
+    print_prog(x.prog, x.line)
