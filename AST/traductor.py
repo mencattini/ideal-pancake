@@ -45,12 +45,32 @@ class Traductor(ast.NodeVisitor):
         s += "]))\n"
         self.prog += s
 
+    def visit_Dict(self, node):
+        s = 'Context({'
+        for index, _ in enumerate(node.keys):
+            if index == len(node.keys) - 1:
+                s += '%s:%s' % (
+                    self.visit(node.keys[index]),
+                    self.visit(node.values[index])
+                    )
+            else:
+                s += '%s:%s, ' % (
+                    self.visit(node.keys[index]),
+                    self.visit(node.values[index])
+                    )
+        s += "})"
+        return s
+
     def visit_Compare(self, node):
         s = '%s ' % (self.visit(node.left))
         # we suppose we have only on comparaison
         s += self.visit(node.ops[0]) + " "
         s += self.visit(node.comparators[0])
         return s
+
+    def visit_UnaryOp(self, node):
+        if node.op.__class__ == ast.USub:
+            return "-" + self.visit(node.operand)
 
     def visit_Gt(self, node):
         return ">"
@@ -76,6 +96,9 @@ class Traductor(ast.NodeVisitor):
     def visit_Name(self, node):
         return 'String(%s)' % (str(node.id))
 
+    def visit_Str(self, node):
+        return 'String(%s)' % (str(node.s))
+
     def visit_Num(self, node):
         return 'Z(%s)' % (str(node.n))
 
@@ -86,6 +109,7 @@ if __name__ == '__main__':
 s = 5
 s = s + 5
 s = 5 - 1
+d = {'a': 5, 'b': 4}
 a = 5
 if s > a:
     s = 0
