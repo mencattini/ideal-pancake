@@ -39,14 +39,14 @@ class Traductor(ast.NodeVisitor):
 
     def visit_If(self, node):
         # first we add the Boolean comparing
-        s = "If(Bool(%s), " % (self.visit(node.test))
-        s += "Expr_list(["
+        s = "Instr.i_if(cond=%s, " % (self.visit(node.test))
+        s += "b_then="
         # then we iterate over the expression in the then
         s += ", ".join([self.visit(ele) for ele in node.body])
-        s += "]), Exrp_list(["
+        s += ", b_else="
         # then we iterate over the expression in the else
         s += ", ".join([self.visit(ele) for ele in node.orelse])
-        s += "]))"
+        s += ")"
         return s
 
     def visit_While(self, node):
@@ -65,10 +65,10 @@ class Traductor(ast.NodeVisitor):
     def visit_Assign(self, node):
         """Give us assign
         """
-        s = "Assign("
+        s = "Instr.assign(varName="
         # we get the targets, we suppose that we always have
         # only on target
-        s += self.visit(node.targets[0]) + ","
+        s += self.visit(node.targets[0]) + ", expr="
         # we get the value
         s += self.visit(node.value) + ")"
         return s
@@ -113,24 +113,25 @@ class Traductor(ast.NodeVisitor):
     def visit_Expr(self, node):
         """Give us the value of an expression
         """
-        return 'Expr(%s)' % (self.visit(node.value))
+        return 'Instr.expr(expr=%s)' % (self.visit(node.value))
 
     def visit_Await(self, node):
         return 'Await(%s)' % (self.visit(node.value))
 
     def visit_BinOp(self, node):
-        s = ""
         # we get the left, right operand, and the operator
-        s += self.visit(node.left)
-        s += self.visit(node.op)
-        s += self.visit(node.right)
+        s = "Expr.expr_binary(op=%s, " % (self.visit(node.op))
+        s += "expr1=%s, " % (self.visit(node.left))
+        s += "expr2=%s)" % (self.visit(node.right))
         return s
 
     def visit_UnaryOp(self, node):
-        return self.visit(node.op) + self.visit(node.operand)
+        return 'Expr.expr_unary(op=%s, expr=%s)' % (
+            self.visit(node.op), self.visit(node.operand)
+            )
 
     def visit_USub(self, node):
-        return "-"
+        return "Unary_Op.uSub()"
 
     def visit_UAdd(self, node):
         return "+"
@@ -153,17 +154,20 @@ class Traductor(ast.NodeVisitor):
     def visit_NotEq(self, node):
         return "!="
 
+    def visit_Mult(self, node):
+        return "Binary_Op.mult()"
+
     def visit_Div(self, node):
-        return " / "
+        return "Binary_Op.div()"
 
     def visit_Sub(self, node):
-        return " - "
+        return "Binary_Op.sub()"
 
     def visit_Add(self, node):
-        return " + "
+        return "Binary_Op.add()"
 
     def visit_Name(self, node):
-        return 'String(%s)' % (str(node.id))
+        return 'Expr.expr_variable(%s)' % (str(node.id))
 
     def visit_Str(self, node):
         return 'String(%s)' % (str(node.s))
@@ -182,36 +186,37 @@ def print_prog(program, line):
 if __name__ == '__main__':
     s = """
 
-t = [1,2,3,4]
+# t = [1,2,3,4]
 s = 5
 s = s + 5
-s = 5 - 1
-10 / 5
-d = {'a': 5, 'b': 4}
-a = 5
+s = -1
+# s = 5 - 1
+# 10 / 5
+# d = {'a': 5, 'b': 4}
+# a = 5
 if s > a:
     s = 0 + d
     "Hello World"
 else:
     s=1
-while s < 10:
-    s = s + 1
+# while s < 10:
+#     s = s + 1
 
-def my_func(a,b,c):
-    res = a + b
-    res = res / c
-    return res
+# def my_func(a,b,c):
+#     res = a + b
+#     res = res / c
+#     return res
 
-async def func(a, b, c):
-    res = a + b
-    await res / c
-    return res
+# async def func(a, b, c):
+#     res = a + b
+#     await res / c
+#     return res
 
-func(1, 2, 3)
+# func(1, 2, 3)
         """
     t = ast.parse(s)
-    # print(s)
-    # print(ast.dump(t))
+
+    print(ast.dump(t))
     x = Traductor()
     x.visit(t)
     print_prog(s, list(range(len(s))))
