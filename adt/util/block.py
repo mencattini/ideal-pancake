@@ -1,7 +1,7 @@
 from stew.core import Sort, generator, operation
 from stew.matching import var
 
-from adt.types.instr import Instr
+from adt.util.instr import Instr
 
 
 class Block(Sort):
@@ -17,14 +17,14 @@ class Block(Sort):
 
     @operation
     def car(block: Block) -> Instr:
-        if block == Block.cons(var.t, var.h):
+        if block == Block.cons(tail=var.t, head=var.h):
             return var.h
         # No precision about car(Empty)
         pass
 
     @operation
     def cdr(block: Block) -> Block:
-        if block == Block.cons(var.t, var.h):
+        if block == Block.cons(tail=var.t, head=var.h):
             return var.t
         # No precision about cdr(Empty)
         pass
@@ -39,11 +39,11 @@ class Block(Sort):
     def pop_end(block: Block) -> Block:
         if Block.cdr(block) == Block.empty():
             return Block.empty()
-        return Block.cons(Block.car(block), pop_end(Block.cdr(block)))
+        return Block.cons(tail=Block.car(block), head=pop_end(Block.cdr(block)))
 
     @operation
     def concat(tail: Block, head: Block) -> Block:
         if head == Block.empty():
             return tail
-        return Block.concat(Block.cons(Block.last(head), tail), Block.pop_end(head))
+        return Block.concat(tail=Block.cons(Block.last(head), tail), head=Block.pop_end(head))
 

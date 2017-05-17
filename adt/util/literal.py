@@ -40,5 +40,3 @@ class Literal(Sort):
     def lit_map(lit: Map) -> Literal:
         pass
 
-    def __str__(self):
-        return '%s[%s]' % ("E", self._generator_args['literal'])

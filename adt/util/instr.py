@@ -1,9 +1,10 @@
 from stew.core import Sort, generator
 
-from ADT.types.expr import Expr
+from ADT.util.expr import Expr
+from ADT.util.block import Block
+
 from ADT.types.bool import Bool
 from ADT.types.string import String
-from ADT.types.block import Block
 
 
 class Instr(Sort):
@@ -11,22 +12,22 @@ class Instr(Sort):
 
     # Assignation of an expression to a variable
     @generator
-    def assign(varName: String, expr: Expr) -> Instr:
+    def i_assign(varName: String, expr: Expr) -> Instr:
         pass
 
     # If statement
     @generator
-    def if(cond: Expr, b_then: Block, b_else: Block) -> Instr:
+    def i_if(cond: Expr, b_then: Block, b_else: Block) -> Instr:
         pass
 
     # While statement
     @generator
-    def while(cond: Expr, block: Block) -> Instr:
+    def i_while(cond: Expr, block: Block) -> Instr:
         pass
 
     # Expression statement
     @generator
-    def expr(expr: Expr) -> Instr:
+    def i_expr(expr: Expr) -> Instr:
         pass
 
 

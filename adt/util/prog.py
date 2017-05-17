@@ -1,15 +1,21 @@
 from stew.core import Sort, Attribute, generator, operation
 from stew.matching import var
 
-from ADT.types.literal import Literal
-from ADT.types.expr import Expr
-from ADT.types.unary_op import Unary_op
-from ADT.types.binary_op import Binary_op
-from ADT.types.funct_list import String_list, Func_list, Func
-from ADT.types.block import Block
-from ADT.types.context import Context
-from ADT.types.instr import Instr
-from ADT.types.bool import Bool
+from adt.util.literal import Literal
+from adt.util.expr import Expr
+from adt.util.unary_op import Unary_op
+from adt.util.binary_op import Binary_op
+from adt.util.block import Block
+from adt.util.context import Context
+from adt.util.instr import Instr
+
+from adt.types.bool import Bool
+from adt.types.nat import Nat
+from adt.types.char import Char
+from adt.types.string import String
+from adt.types.relative import Z
+from adt.types.relative_list import List
+from adt.types.map import Map
 
 
 class Prog(Sort):
@@ -23,7 +29,7 @@ class Prog(Sort):
     def eval_instr(prog: Prog) -> Prog:
         
         # assign statement
-        if car(prog.block) == Instr.assign(var.name, var.expr):
+        if car(prog.block) == Instr.i_assign(var.name, var.expr):
             literal = Expr.eval_expr(var.expr)
             return prog.where(
                     context = add(prog.context, var.name, literal),
@@ -31,7 +37,7 @@ class Prog(Sort):
                     block = cdr(prog.block))
 
         # if statement
-        if car(prog.block) == Instr.if(var.cond, var.b_then, var.b_else):
+        if car(prog.block) == Instr.i_if(var.cond, var.b_then, var.b_else):
             bool_literal = Expr.eval_expr(var.cond)
             if bool_literal == Bool.true():
                 return prog.where(
@@ -45,7 +51,7 @@ class Prog(Sort):
                         block = Block.concat(Block.cdr(prog.block), var.b_else))
 
         # while statement
-        if car(prog.block) == Instr.while(var.cond, var.block):
+        if car(prog.block) == Instr.i_while(var.cond, var.block):
             bool_literal = eval_expr(var.cond)
             if bool_literal == Bool.true():
                 return prog.where(
@@ -59,7 +65,7 @@ class Prog(Sort):
                         block = cdr(prog.block))
 
         # expr statement
-        if car(prog.block) == Inst.expr(var.expr):
+        if car(prog.block) == Inst.i_expr(var.expr):
             Expr.eval_expr(var.expr)
             return prog.where(
                     context = prog.context,
@@ -73,8 +79,8 @@ class Prog(Sort):
     def eval_expr(expr: Expr, context: Context) -> Literal:
 
         # literal
-        if expr == Expr.expr_num(var.num):
-            return var.num
+        if expr == Expr.expr_lit(var.lit):
+            return var.lit
 
         # variable
         if expr == Expr.expr_variable(var.var_name):
