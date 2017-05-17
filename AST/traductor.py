@@ -40,13 +40,13 @@ class Traductor(ast.NodeVisitor):
     def visit_If(self, node):
         # first we add the Boolean comparing
         s = "Instr.i_if(cond=%s, " % (self.visit(node.test))
-        s += "b_then="
+        s += "b_then=Block("
         # then we iterate over the expression in the then
         s += ", ".join([self.visit(ele) for ele in node.body])
-        s += ", b_else="
+        s += "), b_else=Block("
         # then we iterate over the expression in the else
         s += ", ".join([self.visit(ele) for ele in node.orelse])
-        s += ")"
+        s += "))"
         return s
 
     def visit_While(self, node):
