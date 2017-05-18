@@ -19,23 +19,23 @@ class Traductor(ast.NodeVisitor):
                 self.prog += tmp + "\n"
                 self.line.append(ele.lineno)
 
-    def visit_FunctionDef(self, node):
-        # first we store the name of func
-        s = "Func(String(%s), " % (node.name)
-        s += "[%s], " % (", ".join([ele.arg for ele in node.args.args]))
-        s += 'Expr_list([%s]))' % (
-            ", ".join([self.visit(ele) for ele in node.body])
-            )
-        return s
+    # def visit_FunctionDef(self, node):
+    #     # first we store the name of func
+    #     s = "Func(String(%s), " % (node.name)
+    #     s += "[%s], " % (", ".join([ele.arg for ele in node.args.args]))
+    #     s += 'Expr_list([%s]))' % (
+    #         ", ".join([self.visit(ele) for ele in node.body])
+    #         )
+    #     return s
 
-    def visit_AsyncFunctionDef(self, node):
-        # first we store the name of func
-        s = "AsyncFunc(String(%s), " % (node.name)
-        s += "[%s], " % (", ".join([ele.arg for ele in node.args.args]))
-        s += 'Expr_list([%s]))' % (
-            ", ".join([self.visit(ele) for ele in node.body])
-            )
-        return s
+    # def visit_AsyncFunctionDef(self, node):
+    #     # first we store the name of func
+    #     s = "AsyncFunc(String(%s), " % (node.name)
+    #     s += "[%s], " % (", ".join([ele.arg for ele in node.args.args]))
+    #     s += 'Expr_list([%s]))' % (
+    #         ", ".join([self.visit(ele) for ele in node.body])
+    #         )
+    #     return s
 
     def visit_If(self, node):
         # first we add the Boolean comparing
@@ -59,8 +59,8 @@ class Traductor(ast.NodeVisitor):
         s += "))"
         return s
 
-    def visit_Return(self, node):
-        return 'Return(%s)' % (self.visit(node.value))
+    # def visit_Return(self, node):
+    #     return 'Return(%s)' % (self.visit(node.value))
 
     def visit_Assign(self, node):
         """Give us assign
@@ -73,28 +73,28 @@ class Traductor(ast.NodeVisitor):
         s += self.visit(node.value) + ")"
         return s
 
-    def visit_Dict(self, node):
-        # we suppose that the dictionnary is alwasy "string" -> "expr"
-        s = 'Context({'
-        # we iterate and construct the couple key/value
-        for index, _ in enumerate(node.keys):
-            if index == len(node.keys) - 1:
-                s += '%s:%s' % (
-                    self.visit(node.keys[index]),
-                    self.visit(node.values[index])
-                    )
-            else:
-                s += '%s:%s, ' % (
-                    self.visit(node.keys[index]),
-                    self.visit(node.values[index])
-                    )
-        s += "})"
-        return s
+    # def visit_Dict(self, node):
+    #     # we suppose that the dictionnary is alwasy "string" -> "expr"
+    #     s = 'Context({'
+    #     # we iterate and construct the couple key/value
+    #     for index, _ in enumerate(node.keys):
+    #         if index == len(node.keys) - 1:
+    #             s += '%s:%s' % (
+    #                 self.visit(node.keys[index]),
+    #                 self.visit(node.values[index])
+    #                 )
+    #         else:
+    #             s += '%s:%s, ' % (
+    #                 self.visit(node.keys[index]),
+    #                 self.visit(node.values[index])
+    #                 )
+    #     s += "})"
+    #     return s
 
-    def visit_List(self, node):
-        # iterate over the value and store expr in the list
-        values = ", ".join([self.visit(ele) for ele in node.elts])
-        return 'Expr_list([%s])' % (values)
+    # def visit_List(self, node):
+    #     # iterate over the value and store expr in the list
+    #     values = ", ".join([self.visit(ele) for ele in node.elts])
+    #     return 'Expr_list([%s])' % (values)
 
     def visit_Compare(self, node):
         # we suppose we have only on comparaison
@@ -103,20 +103,20 @@ class Traductor(ast.NodeVisitor):
         s += "expr2=%s)" % (self.visit(node.comparators[0]))
         return s
 
-    def visit_Call(self, node):
-        s = 'Call(%s, %s)' % (
-            self.visit(node.func),
-            ", ".join([self.visit(arg) for arg in node.args])
-            )
-        return s
+    # def visit_Call(self, node):
+    #     s = 'Call(%s, %s)' % (
+    #         self.visit(node.func),
+    #         ", ".join([self.visit(arg) for arg in node.args])
+    #         )
+    #     return s
 
     def visit_Expr(self, node):
         """Give us the value of an expression
         """
         return 'Instr.expr(expr=%s)' % (self.visit(node.value))
 
-    def visit_Await(self, node):
-        return 'Await(%s)' % (self.visit(node.value))
+    # def visit_Await(self, node):
+    #     return 'Await(%s)' % (self.visit(node.value))
 
     def visit_BinOp(self, node):
         # we get the left, right operand, and the operator
