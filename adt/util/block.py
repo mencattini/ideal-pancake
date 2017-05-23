@@ -1,12 +1,17 @@
 from stew.core import Sort, generator, operation
 from stew.matching import var
 
-from adt.util.instr import Instr
-
 
 class Block(Sort):
     """Block sort is the list of instructions representing the programm to be executed"""
 
+    @generator
+    def block() -> Block:
+        pass
+
+    
+
+"""
     @generator
     def empty() -> Block:
         pass
@@ -46,4 +51,4 @@ class Block(Sort):
         if head == Block.empty():
             return tail
         return Block.concat(tail=Block.cons(Block.last(head), tail), head=Block.pop_end(head))
-
+"""

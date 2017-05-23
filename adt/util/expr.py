@@ -4,7 +4,7 @@ from adt.util.literal import Literal
 from adt.util.unary_op import Unary_op
 from adt.util.binary_op import Binary_op
 
-from adt_types.string import String
+from adt.types.string import String
 
 
 class Expr(Sort):
@@ -19,10 +19,10 @@ class Expr(Sort):
         pass
 
     @generator
-    def expr_unary(op: Unary_Op, expr: Expr) -> Expr:
+    def expr_unary(op: Unary_op, expr: Expr) -> Expr:
         pass
 
     @generator
-    def expr_binary(op: Binary_Op, expr1: Expr, expr2: Expr) -> Expr:
+    def expr_binary(op: Binary_op, expr1: Expr, expr2: Expr) -> Expr:
         pass
 

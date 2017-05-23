@@ -43,7 +43,7 @@ class Z(Sort):
             x = var.x1 + var.y1
             y = var.x2 + var.y2
             z = Z.cons(pos=x, neg=y)
-            z.normalize()
+            z = z.normalize()
             return z
 
     @operation
@@ -54,7 +54,7 @@ class Z(Sort):
             x = var.x1 + var.y2
             y = var.x2 + var.y1
             z = Z.cons(pos=x, neg=y)
-            z.normalize()
+            z = z.normalize()
             return z
 
     @operation
@@ -90,7 +90,7 @@ class Z(Sort):
 
             # else we reduce
             elif var.x == Nat.suc(var.xx) and var.y == Nat.suc(var.yy):
-                return Z.cons(pos=var.xx, neg=var.yy)
+                return Z.cons(pos=var.xx, neg=var.yy).normalize()
 
     def __str__(self):
         x = self._generator_args['pos']

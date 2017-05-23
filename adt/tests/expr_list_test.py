@@ -1,39 +1,18 @@
-from adt.types.expr_list import Expr, Expr_list
-from adt.types.nat import Bool, Nat
+from adt.util.expr_list import Expr_list
+from adt.util.expr import Expr
+from adt.util.literal import Literal
 
+from adt.types.nat import Nat
+from adt.types.string import String
 
-def test_generator():
-    assert Expr_list.empty()._generator == Expr_list.empty
-    assert Expr_list.cons(
-        tail=Expr_list.empty(),
-        head=Expr(Nat(10)))._generator == Expr_list.cons
-
-
-def test_constructor():
-    assert Expr_list.cons(
-        tail=Expr_list.cons(
-            tail=Expr_list.empty(),
-            head=Expr(Nat(1) + Nat(2))
-        ),
-        head=Expr(Nat(0) > Nat(1))
-    ) == Expr_list([Nat(1) + Nat(2), Nat(0) > Nat(1)])
-
-    assert Expr_list.empty() == Expr_list([])
-
+expr1 = Expr.expr_lit(Literal.lit_nat(Nat(2)))
+expr2 = Expr.expr_variable(String("test"))
+u_expr_list = Expr_list.cons(tail=Expr_list.empty(), head=expr2)
+expr_list = Expr_list.cons(tail=u_expr_list, head=expr1)
 
 def test_car():
-    a = Expr_list([Bool.true(), Nat(10), Nat(11)])
-    assert Expr(Nat(11)) == a.car()
-    assert Expr.empty() == Expr_list.empty().car()
-
+    assert Expr_list.car(expr_list) == expr1
 
 def test_cdr():
-    a = Expr_list([Bool.true(), Nat(10), Nat(11)]).cdr()
-    assert Expr_list([Bool.true(), Nat(10)]).equality(a)
-    assert Expr_list.empty().equality(Expr_list.empty().cdr())
-
-
-def test_rm_nth():
-    a = Expr_list([Bool.true(), Nat(10), Nat(11)])
-    assert a.rm_nth(Nat(0)).equality(Expr_list([Nat(10), Nat(11)]))
-    assert a.rm_nth(Nat(1)).equality(Expr_list([Bool.true(), Nat(11)]))
+    assert Expr_list.cdr(expr_list) == u_expr_list
+    assert Expr_list.car(Expr_list.cdr(expr_list)) == expr2
