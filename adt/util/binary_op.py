@@ -1,8 +1,9 @@
-from stew.core import Sort, generator, operation
-from stew.matching import var
+from stew.core import Sort, generator
+
 
 class Binary_op(Sort):
-    """Operation sort represents a basic python operation taking two arguments"""
+    """Operation sort represents a basic python
+    operation taking two arguments"""
 
     # Here we mix what python call BinOp and BoolOp
     @generator

@@ -39,4 +39,3 @@ class Literal(Sort):
     @generator
     def lit_map(lit: Map) -> Literal:
         pass
-

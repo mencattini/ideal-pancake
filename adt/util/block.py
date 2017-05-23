@@ -1,15 +1,14 @@
-from stew.core import Sort, generator, operation
-from stew.matching import var
+from stew.core import Sort, generator
 
 
 class Block(Sort):
-    """Block sort is the list of instructions representing the programm to be executed"""
+    """Block sort is the list of instructions
+    representing the programm to be executed"""
 
     @generator
     def block() -> Block:
         pass
 
-    
 
 """
     @generator
@@ -33,7 +32,7 @@ class Block(Sort):
             return var.t
         # No precision about cdr(Empty)
         pass
-    
+
     @operation
     def last(block: Block) -> Instr:
         if Block.cdr(block) == Block.empty():
@@ -44,11 +43,18 @@ class Block(Sort):
     def pop_end(block: Block) -> Block:
         if Block.cdr(block) == Block.empty():
             return Block.empty()
-        return Block.cons(tail=Block.car(block), head=pop_end(Block.cdr(block)))
+        return (
+        Block.cons(tail=Block.car(block), head=pop_end(Block.cdr(block)))
+        )
 
     @operation
     def concat(tail: Block, head: Block) -> Block:
         if head == Block.empty():
             return tail
-        return Block.concat(tail=Block.cons(Block.last(head), tail), head=Block.pop_end(head))
+        return (
+            Block.concat(
+            tail=Block.cons(Block.last(head), tail),
+            head=Block.pop_end(head)
+            )
+            )
 """

@@ -1,13 +1,11 @@
-from stew.core import Sort, Attribute, generator, operation
-from stew.matching import var
-
-from adt.types.bool import Bool
-from adt.types.string import String
-from adt.util.block import Block
+from stew.core import Sort
 
 
 class String_list(Sort):
-    """ String_list sort represents the list of parameters name of a function"""
+    """ String_list sort represents the list of
+    parameters name of a function"""
+
+
 """
     @generator
     def empty() -> String_list:
@@ -32,21 +30,28 @@ class String_list(Sort):
         pass
 """
 
+
 class Func(Sort):
-    """ Func sort represents a function with related name, parameters and block of code"""
+    """ Func sort represents a function with related name,
+    parameters and block of code"""
+
+
 """
     name = Attribute(domain = String)
     params = Attribute(domain = String_list)
     block = Attribute(domain = Block)
 """
 
+
 class Func_list(Sort):
     """ Func_list sort represents the list of existing functions"""
-""" 
+
+
+"""
     @generator
     def empty() -> Func_list:
         pass
-    
+
     @generator
     def cons(tail: Func_list, head: Func) -> Func_list:
         pass
@@ -74,8 +79,3 @@ class Func_list(Sort):
         pass
 
 """
-
-
-
-
-

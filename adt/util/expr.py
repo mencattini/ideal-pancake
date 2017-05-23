@@ -25,4 +25,3 @@ class Expr(Sort):
     @generator
     def expr_binary(op: Binary_op, expr1: Expr, expr2: Expr) -> Expr:
         pass
-

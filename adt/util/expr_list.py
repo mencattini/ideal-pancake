@@ -1,8 +1,6 @@
 from stew.core import Sort, generator, operation
-from collections.abc import Sequence
 from adt.util.expr import Expr
 from stew.matching import var
-from adt.types.nat import Nat
 
 
 class Expr_list(Sort):
@@ -93,13 +91,19 @@ class Expr_list(Sort):
                 ',' + self._generator_args['head'].__str__())
 
     def equality(self, other):
-        if (self._generator == other._generator) and self._generator == Expr_list.empty:
+        if (
+            (self._generator == other._generator)
+            and
+            self._generator == Expr_list.empty
+            ):
             return True
         elif self._generator != other._generator:
             return False
         elif self._generator == other._generator:
             if self._generator_args['head'] == other._generator_args['head']:
-                return (self._generator_args['tail']).equality(other._generator_args['tail'])
+                return (
+                (self._generator_args['tail']).equality(
+                other._generator_args['tail']))
             else:
                 return False
 

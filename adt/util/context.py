@@ -6,8 +6,8 @@ from adt.util.literal import Literal
 
 
 class Context(Sort):
-    """ Context sort represents the list of all substitutions for a specific context"""
-    
+    """ Context sort represents the list of all
+    substitutions for a specific context"""
 
     @generator
     def empty() -> Context:
@@ -22,13 +22,15 @@ class Context(Sort):
         if c == Context.empty():
             return Context.cons(c=c, k=k, v=v)
 
-    
         if c == Context.cons(c=var.context, k=var.key, v=var.value):
             if k == var.key:
                 return Context.cons(c=var.context, k=var.key, v=v)
             else:
-                return Context.cons(c=Context.add(c=var.context, k=k, v=v), k=var.key, v=var.value)
-
+                return Context.cons(
+                    c=Context.add(c=var.context, k=k, v=v),
+                    k=var.key,
+                    v=var.value
+                    )
 
     @operation
     def get_value(c: Context, k: String) -> Literal:
@@ -36,8 +38,8 @@ class Context(Sort):
             if k == var.key:
                 return var.value
             else:
-                return Context.get_value(c=var.context, k=k, v=v)
-            
+                return Context.get_value(c=var.context, k=k)
+
     @operation
     def remove(c: Context, k: String) -> Context:
         if c == Context.empty():
@@ -46,5 +48,8 @@ class Context(Sort):
             if k == var.key:
                 return var.context
             else:
-                return Context.cons(c=Context.remove(c=var.context, k=k), k=var.key, v=var.value) 
-
+                return Context.cons(
+                    c=Context.remove(c=var.context, k=k),
+                    k=var.key,
+                    v=var.value
+                    )
