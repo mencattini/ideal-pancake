@@ -1,7 +1,7 @@
 from stew.core import Sort, generator, operation
-from sew.matching import var
+from stew.matching import var
 
-class Binary_Op(Sort):
+class Binary_op(Sort):
     """Operation sort represents a basic python operation taking two arguments"""
 
     # Here we mix what python call BinOp and BoolOp
@@ -26,11 +26,11 @@ class Binary_Op(Sort):
         pass
 
     @generator
-    def and() -> Binary_op:
+    def o_and() -> Binary_op:
         pass
 
     @generator
-    def or() -> Binary_op:
+    def o_or() -> Binary_op:
         pass
 
     @generator

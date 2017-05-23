@@ -1,6 +1,6 @@
 from stew.core import Sort, generator, operation
 from collections.abc import Sequence
-from adt.types.expr import Expr
+from adt.util.expr import Expr
 from stew.matching import var
 from adt.types.nat import Nat
 
@@ -8,7 +8,7 @@ from adt.types.nat import Nat
 class Expr_list(Sort):
     """ Expr_list sort is a list of expressions intended to represent the
     effective parameters in a function call"""
-
+    """
     def __init__(self, *args, **kwargs):
         if (len(args) == 1) and isinstance(args[0], Sequence):
 
@@ -21,7 +21,7 @@ class Expr_list(Sort):
                     'head': Expr(args[0][-1])}
         else:
             Sort.__init__(self, **kwargs)
-
+    """
     @generator
     def empty() -> Expr_list:
         pass
@@ -34,16 +34,12 @@ class Expr_list(Sort):
     def car(e_list: Expr_list) -> Expr:
         if e_list == Expr_list.cons(tail=var.tail, head=var.head):
             return var.head
-        else:
-            return Expr.empty()
 
     @operation
     def cdr(e_list: Expr_list) -> Expr_list:
         if e_list == Expr_list.cons(tail=var.tail, head=var.head):
             return var.tail
-        else:
-            return Expr_list.empty()
-
+    """
     @operation
     def rm_nth(e_list: Expr_list, n: Nat) -> Expr_list:
         return Expr_list._rm_nth(e_list=e_list, n=(e_list.length() - n))
@@ -109,3 +105,4 @@ class Expr_list(Sort):
 
     def __str__(self):
         return '%s(%s)' % (self.__class__.__name__, self._as_list())
+    """

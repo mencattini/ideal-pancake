@@ -1,10 +1,10 @@
 from stew.core import Sort, generator
 
-from adt.types.expr_list import Expr_list
-from adt.types.literal import Literal
-from adt_types.string import String
-from adt.types.unary_op import Unary_op
-from adt.types.binary_op import Binary_op
+from adt.util.literal import Literal
+from adt.util.unary_op import Unary_op
+from adt.util.binary_op import Binary_op
+
+from adt.types.string import String
 
 
 class Expr(Sort):
@@ -19,12 +19,10 @@ class Expr(Sort):
         pass
 
     @generator
-    def expr_unary(op: Unary_Op, expr: Expr) -> Expr:
+    def expr_unary(op: Unary_op, expr: Expr) -> Expr:
         pass
 
     @generator
-    def expr_binary(op: Binary_Op, expr1: Expr, expr2: Expr) -> Expr:
+    def expr_binary(op: Binary_op, expr1: Expr, expr2: Expr) -> Expr:
         pass
 
-    def __str__(self):
-        return '%s[%s]' % ("E", self._generator_args['expr'])

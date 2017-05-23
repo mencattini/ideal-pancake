@@ -1,11 +1,11 @@
 from stew.core import Sort, generator, operation
-from sew.matching import var
+from stew.matching import var
 
-class Unary_Op(Sort):
+class Unary_op(Sort):
     """Operation sort represents a basic python operation taking only one argument"""
 
     @generator
-    def not() -> Unary_Op:
+    def o_not() -> Unary_op:
         pass
 
     # Take the opposite of a relative number
