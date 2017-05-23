@@ -1,8 +1,9 @@
-from stew.core import Sort, generator, operation
-from stew.matching import var
+from stew.core import Sort, generator
+
 
 class Unary_op(Sort):
-    """Operation sort represents a basic python operation taking only one argument"""
+    """Operation sort represents a basic python operation
+    taking only one argument"""
 
     @generator
     def o_not() -> Unary_op:
