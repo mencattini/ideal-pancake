@@ -19,7 +19,8 @@ class Nat(Sort):
                 self._generator_args = {'self': Nat(number - 1)}
             else:
                 raise ArgumentError(
-                    'Cannot initialize %s with a negative number.' % self.__class__.__name__)
+                    'Cannot initialize %s with a negative number.' % (
+                        self.__class__.__name__))
 
         else:
             Sort.__init__(self, **kwargs)

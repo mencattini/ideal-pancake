@@ -6,6 +6,7 @@ from adt.types.relative_list import List
 
 
 class Map(Sort):
+
     def __init__(self, *args, **kwargs):
         if (len(args) == 1) and isinstance(args[0], dict):
             d = args[0]
@@ -17,7 +18,11 @@ class Map(Sort):
                 key = list(d.keys())[0]
                 value = d.pop(list(d.keys())[0])
                 self._generator = Map.add
-                self._generator_args = {'my_map': Map(d), 'key': Z(key), 'value': Z(value)}
+                self._generator_args = {
+                    'my_map': Map(d),
+                    'key': Z(key),
+                    'value': Z(value)
+                    }
 
         else:
             Sort.__init__(self, **kwargs)
@@ -106,9 +111,16 @@ class Map(Sort):
             return ''
         elif self._generator == Map.add:
             if self._generator_args['my_map'] == Map.empty():
-                return str(self._generator_args['key']) + ":" + str(self._generator_args['value'])
+                return (
+                    str(self._generator_args['key'])
+                    + ":" + str(self._generator_args['value'])
+                    )
             else:
-                return str(self._generator_args['key']) + ":" + str(self._generator_args['value']) + ", " + self._generator_args['my_map']._as_dict()
+                return (
+                    str(self._generator_args['key']) + ":" +
+                    str(self._generator_args['value']) + ", " +
+                    self._generator_args['my_map']._as_dict()
+                    )
 
     def __str__(self):
         return '%s(%s)' % (self.__class__.__name__, self._as_dict())

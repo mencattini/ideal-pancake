@@ -13,7 +13,10 @@ class String(Sort):
                 self._generator = String.empty
             else:
                 self._generator = String.cons
-                self._generator_args = {'tail': String(args[0][:-1]), 'head': Char((args[0][-1]))}
+                self._generator_args = {
+                    'tail': String(args[0][:-1]),
+                    'head': Char((args[0][-1]))
+                    }
         else:
             Sort.__init__(self, **kwargs)
 
@@ -51,7 +54,10 @@ class String(Sort):
             if self._generator_args['tail'] == String.empty():
                 return str(self._generator_args['head']._as_char())
             else:
-                return self._generator_args['tail']._as_list() + self._generator_args['head']._as_char()
+                return (
+                    self._generator_args['tail']._as_list() +
+                    self._generator_args['head']._as_char()
+                    )
 
     def __str__(self):
         return '%s(%s)' % (self.__class__.__name__, self._as_list())

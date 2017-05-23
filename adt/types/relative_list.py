@@ -15,7 +15,10 @@ class List(Sort):
                 self._generator = List.empty
             else:
                 self._generator = List.cons
-                self._generator_args = {'tail': List(args[0][:-1]), 'head': Z(args[0][-1])}
+                self._generator_args = {
+                    'tail': List(args[0][:-1]),
+                    'head': Z(args[0][-1])
+                    }
         else:
             Sort.__init__(self, **kwargs)
 
@@ -53,7 +56,10 @@ class List(Sort):
             if self._generator_args['tail'] == List.empty():
                 return str(self._generator_args['head'])
             else:
-                return self._generator_args['tail']._as_list() + "," + self._generator_args['head'].__str__()
+                return (
+                    self._generator_args['tail']._as_list() + "," +
+                    self._generator_args['head'].__str__()
+                    )
 
     def __str__(self):
         return "List(" + self._as_list() + ")"
