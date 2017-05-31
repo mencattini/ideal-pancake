@@ -193,6 +193,24 @@ def print_prog(program, line):
     print("\n")
 
 
+def beautiful_print(program):
+    # we spilt into multiple line
+    lines = program.split('\n')[0:-1]
+    indent = 0
+    res = ''
+    for line in lines:
+        for char in line:
+            if char == '(':
+                indent += 1
+                res += "(\n" + "\t" * indent
+            elif char == ')':
+                indent -= 1
+                res += "\n" + "\t" * indent + ")"
+            else:
+                res += char
+    print(res)
+
+
 if __name__ == '__main__':
     s = """
 
@@ -226,8 +244,9 @@ while s < 10:
         """
     t = ast.parse(s)
 
-    print(ast.dump(t))
+    # print(ast.dump(t))
     x = Traductor()
     x.visit(t)
-    print_prog(s, list(range(1, len(s) + 1)))
-    print_prog(x.prog, x.line)
+    # print_prog(s, list(range(1, len(s) + 1)))
+    # print_prog(x.prog, x.line)
+    beautiful_print(x.prog)
