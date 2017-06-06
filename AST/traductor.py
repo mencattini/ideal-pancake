@@ -1,4 +1,5 @@
 import ast
+from pprint import pprint
 
 
 class Traductor(ast.NodeVisitor):
@@ -19,23 +20,23 @@ class Traductor(ast.NodeVisitor):
                 self.prog += tmp + "\n"
                 self.line.append(ele.lineno)
 
-    # def visit_FunctionDef(self, node):
-    #     # first we store the name of func
-    #     s = "Func(String(%s), " % (node.name)
-    #     s += "[%s], " % (", ".join([ele.arg for ele in node.args.args]))
-    #     s += 'Expr_list([%s]))' % (
-    #         ", ".join([self.visit(ele) for ele in node.body])
-    #         )
-    #     return s
+    def visit_FunctionDef(self, node):
+        # first we store the name of func
+        s = "Func(String(%s), " % (node.name)
+        s += "[%s], " % (", ".join([ele.arg for ele in node.args.args]))
+        s += 'Expr_list([%s]))' % (
+            ", ".join([self.visit(ele) for ele in node.body])
+            )
+        return s
 
-    # def visit_AsyncFunctionDef(self, node):
-    #     # first we store the name of func
-    #     s = "AsyncFunc(String(%s), " % (node.name)
-    #     s += "[%s], " % (", ".join([ele.arg for ele in node.args.args]))
-    #     s += 'Expr_list([%s]))' % (
-    #         ", ".join([self.visit(ele) for ele in node.body])
-    #         )
-    #     return s
+    def visit_AsyncFunctionDef(self, node):
+        # first we store the name of func
+        s = "AsyncFunc(String(%s), " % (node.name)
+        s += "[%s], " % (", ".join([ele.arg for ele in node.args.args]))
+        s += 'Expr_list([%s]))' % (
+            ", ".join([self.visit(ele) for ele in node.body])
+            )
+        return s
 
     def visit_If(self, node):
         # first we add the Boolean comparing
@@ -59,8 +60,8 @@ class Traductor(ast.NodeVisitor):
         s += "))"
         return s
 
-    # def visit_Return(self, node):
-    #     return 'Return(%s)' % (self.visit(node.value))
+    def visit_Return(self, node):
+        return 'Return(%s)' % (self.visit(node.value))
 
     def visit_Assign(self, node):
         """Give us assign
@@ -103,20 +104,20 @@ class Traductor(ast.NodeVisitor):
         s += "expr2=%s)" % (self.visit(node.comparators[0]))
         return s
 
-    # def visit_Call(self, node):
-    #     s = 'Call(%s, %s)' % (
-    #         self.visit(node.func),
-    #         ", ".join([self.visit(arg) for arg in node.args])
-    #         )
-    #     return s
+    def visit_Call(self, node):
+        s = 'Call(%s, %s)' % (
+            self.visit(node.func),
+            ", ".join([self.visit(arg) for arg in node.args])
+            )
+        return s
 
     def visit_Expr(self, node):
         """Give us the value of an expression
         """
         return 'Instr.expr(expr=%s)' % (self.visit(node.value))
 
-    # def visit_Await(self, node):
-    #     return 'Await(%s)' % (self.visit(node.value))
+    def visit_Await(self, node):
+        return 'Await(%s)' % (self.visit(node.value))
 
     def visit_BinOp(self, node):
         # we get the left, right operand, and the operator
@@ -196,32 +197,32 @@ def print_prog(program, line):
 def beautiful_print(program):
     # we spilt into multiple line
     lines = program.split('\n')[0:-1]
-    indent = 0
-    res = ''
     for line in lines:
-        for char in line:
-            if char == '(':
-                indent += 1
-                res += "(\n" + "\t" * indent
-            elif char == ')':
-                indent -= 1
-                res += "\n" + "\t" * indent + ")"
-            else:
-                res += char
-    print(res)
+        pprint(line)
+        print("\n")
+    # indent = 0
+    # res = ''
+    # for line in lines:
+    #     for char in line:
+    #         if char == '(':
+    #             indent += 1
+    #             res += "(\n" + "\t" * indent
+    #         elif char == ')':
+    #             indent -= 1
+    #             res += "\n" + "\t" * indent + ")"
+    #         else:
+    #             res += char
+    # print(res)
 
 
 if __name__ == '__main__':
     s = """
 
-# t = [1,2,3,4]
 s = 5
 s = s + 5
 s = -1
 a = 5
-# s = 5 - 1
-# 10 / 5
-# d = {'a': 5, 'b': 4}
+
 if s > a and a < s:
     s = 0 + d
     "Hello World"
@@ -230,21 +231,22 @@ else:
 while s < 10:
     s = s + 1
 
-# def my_func(a,b,c):
-#     res = a + b
-#     res = res / c
-#     return res
+def my_func(a,b,c):
+    res = a + b
+    res = res / c
+    return res
 
-# async def func(a, b, c):
-#     res = a + b
-#     await res / c
-#     return res
+async def func(a, b, c):
+    res = a + b
+    await res
+    return res
 
-# func(1, 2, 3)
+func(1, 2, 3)
         """
     t = ast.parse(s)
 
-    # print(ast.dump(t))
+    pprint(ast.dump(t))
+    print("\n")
     x = Traductor()
     x.visit(t)
     # print_prog(s, list(range(1, len(s) + 1)))
